@@ -63,45 +63,13 @@ node scripts/classify.mjs         # 识别复刻候选，生成 data/review-queu
 node scripts/import-data.mjs      # 官方事实 × 社区名字合并 → data/occurrences.json / spirits.json
 node scripts/predict.mjs          # 生成下次复刻的统计预测 → data/predictions.json
 node scripts/build.mjs            # 校验 + 生成 data/app-data.js（页面读取）
-node scripts/smoke.mjs            # 无浏览器冒烟测试（五个视图 + 详情抽屉）
+node scripts/smoke.mjs            # 无浏览器冒烟测试（六个视图 + 详情抽屉 + review 页）
 ```
 
 - 只想核对某条：打开 `review.html`，逐条看图核验、填写名字与类型、导出 JSON。
-- `npm run build` 等价于 `build.mjs + smoke.mjs`；`npm run all` 跑完整条流水线。
+- `npm run build` 会依次执行 合并 → 预测 → 校验 → 构建 → 冒烟测试；`npm run all` 先抓取再走完整条流水线。
 
 ---
-
-## 4.5 部署到 GitHub Pages（自动更新）
-
-仓库里的 [`.github/workflows/update.yml`](.github/workflows/update.yml) 会：
-
-1. 每天北京时间 **13:00**（也可手动触发）抓取官方公告与 BWiki 记录；
-2. 重新分类、合并、校验、生成页面数据；
-3. 把 `index.html + assets + data/app-data.js` 发布到 GitHub Pages。
-
-> 工作流**不会回写仓库数据**：抓取与构建结果只用于当次部署，仓库里的 `data/*.json` 保留你最后一次提交的版本。这样可以避免机器人提交和本地提交互相冲突。
-
-### 一次性设置
-
-1. 在 GitHub 新建一个仓库（免费账号的 Pages 需要**公开**仓库）。
-2. 本目录已经 `git init` 并完成首次提交，补上远端后直接推送：
-
-   ```bash
-   git remote add origin https://github.com/<你的用户名>/<仓库名>.git
-   git push -u origin main
-   ```
-
-3. 仓库 **Settings → Pages → Build and deployment**，Source 选 **GitHub Actions**。
-4. 打开 **Actions** 页签 → `Update data & deploy` → **Run workflow**。
-5. 等部署完成，访问 `https://<你的用户名>.github.io/<仓库名>/`。
-
-说明：
-
-- 不需要配置任何 Secret，工作流用内置的 `GITHUB_TOKEN`（已在 workflow 里声明 `contents/pages/id-token` 权限）。
-- BWiki 偶尔会限流，该步骤设为 `continue-on-error`：失败时名字沿用上次快照，官方公告照常更新。
-- 定时任务由 GitHub 调度，可能有几分钟到十几分钟延迟；想立刻更新就手动 Run workflow。
-- 公开仓库的定时任务若连续 60 天没有仓库活动会被 GitHub 暂停，手动 Run 一次即可恢复。
-- 页面是 hash 路由（`#/spirits`），不需要 404 兜底；`_site` 里已放 `.nojekyll`。
 
 ### 已知数据缺口
 
@@ -109,39 +77,6 @@ node scripts/smoke.mjs            # 无浏览器冒烟测试（五个视图 + �
 - **2020 上半年（3~7 月）**：官方账号可归档范围从 2020-08 开始（更早动态接口不可达）→ 13 条社区记录待考证。
 - **官方复刻名字已全部确认**：2020-11-05（蟹语者）、2024-05-09（献情演员）已通过 `data/manual-names.json` 人工补录，并合并进对应先祖的统计。
 - 加塞判定为档期推断，不是官方标签；如需严格口径，可在页面切到“常规 + 集体”。
-
----
-
-## 4.6 补录 / 更正先祖名字（本地）
-
-官方公告经常不写名字（只写“勤劳的先祖”），社区 Wiki 也偶尔对不上。遇到这种情况，**不要直接改 `data/occurrences.json`**（它是生成文件，下次构建会被覆盖），改这个文件：
-
-`data/manual-names.json`
-
-```json
-{
-  "overrides": {
-    "2024-05-09": {
-      "name": "先祖名字",
-      "season": "所属季节",
-      "map": "地图",
-      "evidence": "https://官方公告或截图链接",
-      "note": "判断依据：公告图 / 物品线索 / 游戏内截图"
-    }
-  }
-}
-```
-
-- key 用**复刻开始日期**（`YYYY-MM-DD`），或官方公告的 `postId`（两者都支持，日期优先）。
-- `name` 必填，其余可选；人工补录**优先于**社区 Wiki 的名字。
-- 改完运行：
-
-  ```bash
-  npm run build
-  ```
-
-  它会依次执行 合并 → 预测 → 校验 → 构建 → 冒烟测试。刷新页面即可看到；`data/manual-names.json` 里没匹配到记录的 key 会在构建时给出警告。
-- 确认无误后，把 `data/manual-names.json` 和重新生成的数据一起提交即可。
 
 ---
 
