@@ -444,7 +444,9 @@
         '<div class="card section"><h2>未归属：官方有复刻、名字未确认 <small>' + UNMATCHED.length + ' 条</small></h2>' +
           '<div class="table-wrap"><table><thead><tr><th>时间</th><th>说明</th><th>来源</th></tr></thead><tbody>' + unmatched + '</tbody></table></div></div>' +
 
-        '<div class="card section"><h2>导出与更新</h2><div class="controls">' +
+        '<div class="card section"><h2>导出与更新</h2>' +
+        '<p class="small">代码、数据与自动更新工作流都在 <a href="https://github.com/Qianzhihe0224/Sky-Children-of-the-Light-Returning-Spirit-Lookup-Tool" target="_blank" rel="noopener">GitHub 仓库</a>，欢迎提 issue 或 PR 补充史料。</p>' +
+        '<div class="controls">' +
           '<button class="action" id="export-spirits">导出先祖统计 CSV</button>' +
           '<button class="action" id="export-occurrences">导出复刻明细 JSON</button>' +
         '</div>' +
