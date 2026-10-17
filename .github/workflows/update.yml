@@ -2,9 +2,8 @@ name: Update data & deploy
 
 on:
   schedule:
-    # 北京时间 09:15 / 21:15，每天两次（复刻公告一般在下午发布）
-    - cron: '15 1 * * *'
-    - cron: '15 13 * * *'
+    # 每天北京时间 13:00（GitHub cron 用 UTC，13:00 CST = 05:00 UTC）
+    - cron: '0 5 * * *'
   workflow_dispatch:
   push:
     branches: [main]

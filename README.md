@@ -73,7 +73,7 @@ node scripts/smoke.mjs            # 无浏览器冒烟测试（五个视图 + �
 
 仓库里的 [`.github/workflows/update.yml`](.github/workflows/update.yml) 会：
 
-1. 每天北京时间 **09:15 / 21:15**（也可手动触发）抓取官方公告与 BWiki 记录；
+1. 每天北京时间 **13:00**（也可手动触发）抓取官方公告与 BWiki 记录；
 2. 重新分类、合并、校验、生成页面数据；
 3. 把数据变更提交回仓库；
 4. 把 `index.html + assets + data/app-data.js` 发布到 GitHub Pages。
