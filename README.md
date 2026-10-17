@@ -1,4 +1,4 @@
-# Sky-Children-of-the-Light-Returning-Spirit-Lookup-Tool
+# Sky-Traveling-Spirit-Tracker
 
 **《光·遇》国服复刻先祖统计与可视化**
 
