@@ -77,6 +77,19 @@
     return map.year + '-' + map.month + '-' + map.day + ' ' + map.hour + ':' + map.minute;
   }
 
+  function latestOccurrence() {
+    var list = OCC.filter(function (occ) { return occ.kind !== 'group'; });
+    return list[0] || null;
+  }
+
+  function occurrenceStatus(occ) {
+    if (!occ) return '';
+    var now = Date.now();
+    if (now < Date.parse(occ.start)) return '未开始';
+    if (now <= Date.parse(occ.end)) return '进行中';
+    return '已结束';
+  }
+
   function kindBadge(kind, extraCls) {
     var k = KIND[kind] || KIND.regular;
     return '<span class="badge ' + k.cls + (extraCls ? ' ' + extraCls : '') + '">' +
@@ -149,6 +162,7 @@
 
   /* ---------------- 概览 ---------------- */
   function renderOverview() {
+    var latest = latestOccurrence();
     var top = SPIRITS.slice(0, 12);
     var max = top.length ? totalFor(top[0]) || 1 : 1;
     var recent = OCC.filter(function (o) { return o.kind !== 'group'; }).slice(0, 7);
@@ -175,8 +189,10 @@
       '<div class="wrap">' +
         '<div class="banner"><span class="dot"></span><div>' +
           '<strong>复刻事实只认官方公告</strong>：每条记录都带网易大神「Sky光遇」官方原文链接；' +
-          '先祖名字在官方未写名时取自社区 Wiki，并在明细里标注来源。' +
-          '数据截止 <strong>' + esc(fmtDate(META.dataCutoff)) + '</strong>。' +
+          '先祖名字在官方未写名时取自社区 Wiki，并在明细里标注来源。<br>' +
+          '数据更新于 <strong>' + esc(fmtBeijing(META.generatedAt)) + '</strong>' +
+          (latest ? ' · 最近一次复刻：<strong>' + esc(latest.spiritName || '') + '</strong> ' +
+            esc(fmtRange(latest.start, latest.end)) + '（' + esc(occurrenceStatus(latest)) + '）' : '') +
         '</div></div>' +
 
         '<div class="grid grid-4 section">' +
@@ -198,8 +214,10 @@
 
         '<div class="grid grid-2 section">' +
           '<div class="card"><h2>数据覆盖</h2><dl class="kv">' +
+            '<dt>数据更新</dt><dd>' + esc(fmtBeijing(META.generatedAt)) + '（北京时间）</dd>' +
             '<dt>官方公告归档</dt><dd>' + esc(META.archiveSince) + ' 起（大神官方账号公开动态）</dd>' +
-            '<dt>已核验范围</dt><dd>' + esc(fmtDate(META.coverage && META.coverage.from)) + ' ~ ' + esc(fmtDate(META.dataCutoff)) + '</dd>' +
+            '<dt>覆盖至</dt><dd>' + esc(fmtDate(META.coverage && META.coverage.from)) + ' ~ ' + esc(fmtDate(META.dataCutoff)) +
+              '<span class="muted">（含进行中的复刻，以其结束时间计）</span></dd>' +
             '<dt>已知缺口</dt><dd>' + PENDING.length + ' 条社区记录缺官方公告（多为 2024-08~11、2020 上半年）；' + UNMATCHED.length + ' 条官方复刻未确认名字</dd>' +
             '<dt>交叉核对</dt><dd>与 BWiki 记录的“常规复刻次数”比对，差异会显示在先祖详情里</dd>' +
             '</dl></div>' +
