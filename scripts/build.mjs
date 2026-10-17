@@ -4,6 +4,9 @@ import fs from 'node:fs';
 
 const checkOnly = process.argv.includes('--check-only');
 const data = JSON.parse(fs.readFileSync('data/occurrences.json', 'utf8'));
+const predictions = fs.existsSync('data/predictions.json')
+  ? JSON.parse(fs.readFileSync('data/predictions.json', 'utf8'))
+  : null;
 
 const errors = [];
 const warnings = [];
@@ -73,6 +76,7 @@ for (const occ of data.occurrences) {
 
 const payload = {
   meta: data.meta,
+  predictions,
   spirits: data.spirits,
   occurrences: data.occurrences,
   groupEvents: data.groupEvents,
@@ -97,6 +101,9 @@ const js = `${banner}window.__SKY_DATA__ = ${JSON.stringify(payload)};\n`;
 if (!checkOnly) {
   fs.writeFileSync('data/app-data.js', js, 'utf8');
 }
+
+if (!predictions) warnings.push('缺少 data/predictions.json，预测页会显示为空');
+else if (!predictions.nextDates || !predictions.nextDates.length) warnings.push('预测日期为空，请检查 predict.mjs');
 
 console.log('数据统计：', stats);
 console.log('校验错误：', errors.length, errors.slice(0, 10));

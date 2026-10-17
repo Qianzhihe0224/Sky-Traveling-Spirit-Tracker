@@ -29,6 +29,7 @@
 ## 2. 页面
 
 - **总览**：总量、分类分布、Top 12、最近复刻、数据缺口提示。
+- **下次预测**：按历史开档间隔推测下一次常规复刻的日期（含概率与备选），并按“久未复刻优先”给出候选先祖 Top 12；纯统计推测，不是官方预告。
 - **先祖榜**：搜索（先祖 / 季节 / 地图）、按季节筛选、切换统计口径、列排序；点任意一行看每次复刻的明细与官方链接。
 - **时间轴**：按年份倒序，可按常规 / 加塞 / 集体过滤。
 - **集体复刻**：每场活动的区间、出场先祖、名单来源。
@@ -60,6 +61,7 @@ node scripts/sync-dashen.mjs      # 抓取官方账号全部公开动态（增�
 node scripts/fetch-wiki.mjs       # 抓取 BWiki 原始 wikitext（补名字，落在 data/raw/wiki-records.json）
 node scripts/classify.mjs         # 识别复刻候选，生成 data/review-queue.json 与核验页数据
 node scripts/import-data.mjs      # 官方事实 × 社区名字合并 → data/occurrences.json / spirits.json
+node scripts/predict.mjs          # 生成下次复刻的统计预测 → data/predictions.json
 node scripts/build.mjs            # 校验 + 生成 data/app-data.js（页面读取）
 node scripts/smoke.mjs            # 无浏览器冒烟测试（五个视图 + 详情抽屉）
 ```

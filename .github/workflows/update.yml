@@ -42,6 +42,7 @@ jobs:
         run: |
           node scripts/classify.mjs
           node scripts/import-data.mjs
+          node scripts/predict.mjs
           node scripts/build.mjs
           node scripts/smoke.mjs
 

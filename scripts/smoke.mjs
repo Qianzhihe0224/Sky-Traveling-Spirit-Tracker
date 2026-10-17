@@ -40,7 +40,7 @@ function run(hash) {
   const view = makeElement('view');
   const mask = makeElement('mask');
   const drawer = makeElement('drawer');
-  const tabs = ['overview', 'spirits', 'timeline', 'groups', 'about'].map(route => {
+  const tabs = ['overview', 'spirits', 'predict', 'timeline', 'groups', 'about'].map(route => {
     const el = makeElement('tab-' + route);
     el.attributes.href = '#/' + route;
     return el;
@@ -92,6 +92,7 @@ function run(hash) {
 const expectations = {
   overview: ['已核验复刻段数', '复刻次数 Top 12', '最近复刻', '数据更新于', '最近一次复刻：', '进行中'],
   spirits: ['先祖榜', '总次数', '口径说明', '静光学者', '智慧长者', 'dd-panel', '全部季节'],
+  predict: ['下一次常规复刻预测', '日期预测', '候选先祖', '预测方法'],
   timeline: ['时间轴', '2026 年', '2025 年'],
   groups: ['集体复刻', '九色鹿季集体复刻', '采药人', '名单来源：社区 Wiki'],
   about: ['来源与口径', '待考证', '免责声明', 'BWiki'],

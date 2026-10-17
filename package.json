@@ -9,8 +9,9 @@
     "wiki": "node scripts/fetch-wiki.mjs",
     "classify": "node scripts/classify.mjs",
     "import": "node scripts/import-data.mjs",
-    "build": "node scripts/build.mjs && node scripts/smoke.mjs",
+    "build": "node scripts/predict.mjs && node scripts/build.mjs && node scripts/smoke.mjs",
     "smoke": "node scripts/smoke.mjs",
-    "all": "node scripts/sync-dashen.mjs && node scripts/fetch-wiki.mjs && node scripts/classify.mjs && node scripts/import-data.mjs && node scripts/build.mjs && node scripts/smoke.mjs"
+    "all": "node scripts/sync-dashen.mjs && node scripts/fetch-wiki.mjs && node scripts/classify.mjs && node scripts/import-data.mjs && node scripts/predict.mjs && node scripts/build.mjs && node scripts/smoke.mjs",
+    "predict": "node scripts/predict.mjs"
   }
 }

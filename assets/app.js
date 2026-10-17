@@ -13,6 +13,7 @@
   }
 
   var META = DATA.meta;
+  var PREDICT = DATA.predictions || null;
   var SPIRITS = DATA.spirits;
   var OCC = DATA.occurrences;
   var GROUPS = DATA.groupEvents;
@@ -323,6 +324,95 @@
     body.innerHTML = spiritRows();
   }
 
+  /* ---------------- 下次预测 ---------------- */
+  function cnDate(iso) {
+    var s = fmtDate(iso);
+    return Number(s.slice(5, 7)) + ' 月 ' + Number(s.slice(8, 10)) + ' 日';
+  }
+
+  function renderPredict() {
+    if (!PREDICT || !PREDICT.nextDates || !PREDICT.nextDates.length) {
+      view.innerHTML = '<div class="wrap"><div class="section-head"><h2>下次预测</h2></div>' +
+        '<div class="card">暂无预测数据：请先运行 <code>node scripts/predict.mjs</code> 再构建。</div></div>';
+      return;
+    }
+
+    var dates = PREDICT.nextDates;
+    var main = dates[0];
+    var alternatives = dates.slice(1);
+    var last = PREDICT.lastRegular || {};
+    var candidates = PREDICT.candidates || [];
+    var distribution = (PREDICT.cadence && PREDICT.cadence.distribution) || [];
+
+    var altHtml = alternatives.map(function (item) {
+      return '<span class="chip">' + cnDate(item.date) + ' ' + esc(item.weekday) +
+        '<small>' + item.probability + '%</small></span>';
+    }).join('') || '<span class="muted small">暂无</span>';
+
+    var distHtml = distribution.map(function (item) {
+      return '<span class="chip">' + item.gap + ' 天<small>' + item.count + ' 次</small></span>';
+    }).join('');
+
+    var candidateHtml = candidates.map(function (item, index) {
+      return '<div class="cand-item" data-open-spirit="' + esc(item.name) + '">' +
+        '<div class="cand-rank">' + (index + 1) + '</div>' +
+        '<div class="cand-main"><div class="cand-name">' + esc(item.name) +
+          (item.season ? ' <span class="season-tag">' + esc(item.season) + '</span>' : '') + '</div>' +
+          '<div class="cand-meta">' + esc((item.reasons || []).join(' · ')) + '</div></div>' +
+        '<div class="cand-score"><div class="bar"><i style="width:' + Math.max(6, item.score) + '%"></i></div>' +
+          '<span>' + item.score + '</span></div>' +
+      '</div>';
+    }).join('');
+
+    var methodHtml = (PREDICT.method || []).map(function (line) {
+      return '<li>' + esc(line) + '</li>';
+    }).join('');
+
+    view.innerHTML =
+      '<div class="wrap">' +
+        '<div class="section-head"><h2>下一次常规复刻预测</h2>' +
+          '<span class="hint">基于 ' + esc(PREDICT.cadence ? PREDICT.cadence.samples : '—') + ' 次开档间隔 · 更新于 ' + esc(fmtBeijing(PREDICT.generatedAt)) + '</span></div>' +
+        '<div class="banner"><span class="dot"></span><div><strong>这是统计推测，不是官方预告。</strong>' +
+          esc(PREDICT.disclaimer || '') + '</div></div>' +
+
+        '<div class="grid grid-2 section">' +
+          '<div class="card">' +
+            '<h2>日期预测 <small>下一次常规档期</small></h2>' +
+            '<div class="big-date">' + cnDate(main.date) + '</div>' +
+            '<div class="mono muted">' + fmtDate(main.date) + ' · ' + esc(main.weekday) + ' 06:00 开档</div>' +
+            '<div class="prob-bar"><i style="width:' + main.probability + '%"></i></div>' +
+            '<div class="small">历史同档期概率 <b>' + main.probability + '%</b>（近三年 ' + main.sample + ' 次 ' + main.gapDays + ' 天间隔）</div>' +
+            '<div class="small muted">上次常规复刻：' + esc(fmtDate(last.start)) + ' ' + esc(last.spiritName || '') + '</div>' +
+            '<div class="small section">加塞档期概率 <b>' + (PREDICT.extraChance || 0) + '%</b>（5~9 天的额外复刻，多出现在节假日）</div>' +
+            '<div class="small">备选日期：' + altHtml + '</div>' +
+            '<div class="chips section">' + distHtml + '</div>' +
+          '</div>' +
+          '<div class="card">' +
+            '<h2>候选先祖 Top ' + Math.min(6, candidates.length) + ' <small>久未复刻优先</small></h2>' +
+            '<div class="cand-list">' + candidates.slice(0, 6).map(function (item, index) {
+              return '<div class="cand-item" data-open-spirit="' + esc(item.name) + '">' +
+                '<div class="cand-rank">' + (index + 1) + '</div>' +
+                '<div class="cand-main"><div class="cand-name">' + esc(item.name) +
+                  (item.season ? ' <span class="season-tag">' + esc(item.season) + '</span>' : '') + '</div>' +
+                  '<div class="cand-meta">' + esc((item.reasons || []).join(' · ')) + '</div></div>' +
+                '<div class="cand-score"><div class="bar"><i style="width:' + Math.max(6, item.score) + '%"></i></div>' +
+                  '<span>' + item.score + '</span></div>' +
+              '</div>';
+            }).join('') + '</div>' +
+            '<p class="small muted">点击名字查看该先祖的复刻历史。</p>' +
+          '</div>' +
+        '</div>' +
+
+        '<div class="card section"><h2>完整候选榜 <small>按得分排序，点击查看明细</small></h2>' +
+          '<div class="cand-list">' + candidateHtml + '</div></div>' +
+
+        '<div class="card section"><h2>预测方法</h2>' +
+          '<ul class="list-clean">' + methodHtml + '</ul>' +
+          '<p class="small muted">' + esc(PREDICT.disclaimer || '') + '预测会随每天的数据构建自动更新；官方通常在复刻当周才发布公告。</p>' +
+        '</div>' +
+      '</div>';
+  }
+
   /* ---------------- 时间轴 ---------------- */
   function renderTimeline() {
     var list = OCC.slice().sort(function (a, b) { return b.start.localeCompare(a.start); });
@@ -566,7 +656,7 @@
   /* ---------------- 路由与事件 ---------------- */
   function currentRoute() {
     var hash = (location.hash || '').replace(/^#\/?/, '');
-    if (['overview', 'spirits', 'timeline', 'groups', 'about'].indexOf(hash) < 0) return 'overview';
+    if (['overview', 'spirits', 'predict', 'timeline', 'groups', 'about'].indexOf(hash) < 0) return 'overview';
     return hash;
   }
 
@@ -583,6 +673,7 @@
     closeDrawer();
     if (route === 'overview') renderOverview();
     else if (route === 'spirits') renderSpirits();
+    else if (route === 'predict') renderPredict();
     else if (route === 'timeline') renderTimeline();
     else if (route === 'groups') renderGroups();
     else renderAbout();
