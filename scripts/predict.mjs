@@ -9,8 +9,9 @@ const DAY = 86400000;
 const NOW = Date.now();
 
 const data = JSON.parse(fs.readFileSync('data/occurrences.json', 'utf8'));
+// 只用"常规复刻"做档期预测：加塞不参与节奏统计
 const regular = data.occurrences
-  .filter(occ => occ.kind !== 'group')
+  .filter(occ => occ.kind === 'regular')
   .sort((a, b) => a.start.localeCompare(b.start));
 
 const ymd = iso => String(iso).slice(0, 10);
@@ -44,7 +45,10 @@ gaps.forEach(gap => {
 const weekly = [7, 14, 21]
   .map(gap => ({ gap, count: gapCount[gap] || 0, p: (gapCount[gap] || 0) / totalGaps }))
   .filter(item => item.count > 0);
-const extraGap = [5, 6, 8, 9, 13, 15].reduce((sum, gap) => sum + (gapCount[gap] || 0), 0) / totalGaps;
+const extraCount = data.occurrences.filter(occ => occ.kind === 'extra').length;
+const extraShare = regular.length + extraCount
+  ? Number(((extraCount / (regular.length + extraCount)) * 100).toFixed(1))
+  : 0;
 
 const last = regular.at(-1);
 const nextDates = weekly
@@ -101,7 +105,7 @@ const payload = {
     spiritName: last.spiritName,
   },
   nextDates,
-  extraChance: Number((extraGap * 100).toFixed(1)),
+  extraShare,
   cadence: {
     windowDays: 1095,
     samples: totalGaps,
@@ -113,11 +117,12 @@ const payload = {
   },
   candidates: candidates.slice(0, 12),
   method: [
-    '开档间隔：统计近三年每次常规复刻之间的天数，取出现最多的间隔（14 天）作为主预测，7 天作为备选。',
-    '加塞可能性：间隔 5/6/8/9/13/15 天的历史占比，代表节假日加场的概率。',
+    '常规档期：国服常规复刻按“每隔一周的周四”开档，因此主预测取 14 天后；样本是近三年相邻常规复刻之间的天数。',
+    '加塞：偏离两周节奏、夹在两次常规复刻之间的额外复刻单独计数，不参与日期预测；历史加塞占比仅供参考。',
     '候选排序：65% 看“距上次复刻天数”（越久越靠前），35% 看“历史上单独复刻次数”（越少越靠前）。',
     '刚复刻过（45 天内）的先祖不进入候选；集体复刻只作为参考信息，不改变排序权重。',
     '2021~2022 年后再未出现的先祖（如蟹舞者、螺旋武冠）可能已在轮换池之外，排名靠前只代表“数据上久未复刻”，不代表官方一定会安排。',
+    '早期（2020~2021）档期不规律，无法判断是否为加塞，一律按常规复刻处理。',
   ],
   disclaimer: '纯统计推测，不是官方预告。官方公告通常在复刻当周才发布，请以官方消息为准。',
 };
@@ -126,5 +131,5 @@ fs.writeFileSync(OUT, JSON.stringify(payload, null, 1), 'utf8');
 
 console.log('上一次常规复刻：', ymd(last.start), last.spiritName);
 console.log('预测日期：', nextDates.map(item => `${ymd(item.date)}（${item.weekday}，${item.probability}%）`).join(' / '));
-console.log('加塞概率：', `${payload.extraChance}%`);
+console.log('历史加塞占比：', `${payload.extraShare}%`);
 console.log('候选 Top 5：', candidates.slice(0, 5).map(item => `${item.name}(${item.score})`).join('、'));

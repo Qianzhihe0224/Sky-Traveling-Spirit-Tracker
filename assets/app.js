@@ -383,7 +383,7 @@
             '<div class="prob-bar"><i style="width:' + main.probability + '%"></i></div>' +
             '<div class="small">历史同档期概率 <b>' + main.probability + '%</b>（近三年 ' + main.sample + ' 次 ' + main.gapDays + ' 天间隔）</div>' +
             '<div class="small muted">上次常规复刻：' + esc(fmtDate(last.start)) + ' ' + esc(last.spiritName || '') + '</div>' +
-            '<div class="small section">加塞档期概率 <b>' + (PREDICT.extraChance || 0) + '%</b>（5~9 天的额外复刻，多出现在节假日）</div>' +
+            '<div class="small section">历史加塞占比 <b>' + (PREDICT.extraShare || 0) + '%</b>（偏离两周节奏、夹在两次常规复刻之间的额外复刻，节假日多见）</div>' +
             '<div class="small">备选日期：' + altHtml + '</div>' +
             '<div class="chips section">' + distHtml + '</div>' +
           '</div>' +
@@ -518,7 +518,7 @@
         '<div class="card"><h2>统计口径</h2><ul class="list-clean">' +
           '<li><b>复刻事实</b>：是否存在、开始/结束时间，只采用官方公告（网易大神官方认证账号「Sky光遇」为主，官网/官方微博/游戏内公告为辅），每条记录都保留官方原文链接。</li>' +
           '<li><b>常规复刻</b>：按常规档期（周四 06:00 → 周一 12:00 左右）开启的单次复刻。</li>' +
-          '<li><b>加塞复刻</b>：与上一条常规复刻间隔 ≤ 9 天的额外复刻，多为春节/五一/国庆等假期的加场。官方公告不会自称“加塞”，此处为按档期推断，明细中标注“加塞（推断）”。</li>' +
+          '<li><b>加塞复刻</b>：国服常规档期是“每隔一周的周四”。把相邻两次开始日正好相差 14 天的复刻串成常规链，<b>不在链上、且夹在常规档期之间的额外复刻</b>才算加塞（如端午、春节、国庆的加场）。2020~2021 等早期档期不规律，一律按常规处理。官方公告不会自称“加塞”，因此这是按档期推断，明细里标注“推断”。</li>' +
           '<li><b>集体复刻</b>：多先祖同时回归的限时活动，单独计数；同一活动内同一位先祖只计 1 次出场。</li>' +
           '<li><b>总次数</b>：默认 = 常规 + 加塞 + 集体；可切换为“常规 + 集体”（加塞只展示不计入）。</li>' +
           '<li><b>名字来源</b>：官方公告正文 > 官方公告图 > 游戏内实拍 > 社区 Wiki。官方未写名时用社区 Wiki 补名字，并在明细里标注。</li>' +

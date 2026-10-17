@@ -116,7 +116,36 @@ assignRegulars(0);
 assignRegulars(2);
 assignGroups(2, false);
 
-let prevNonGroupStart = null;
+// ---------- 3.3 常规 / 加塞判定 ----------
+// 国服常规档期是「每隔一周的周四」：把相邻两次复刻开始日正好相差 14 天的串成常规链。
+// 不在链上、且夹在常规档期之间的额外复刻才算加塞；早期档期不规律（没有 14 天邻居）一律按常规处理。
+const nonGroupEvents = officialEvents.filter(event => event.kindGuess !== 'group');
+const chainRegular = new Set();
+for (let i = 1; i < nonGroupEvents.length; i += 1) {
+  const gap = Math.round(
+    (Date.parse(nonGroupEvents[i].start) - Date.parse(nonGroupEvents[i - 1].start)) / DAY,
+  );
+  if (gap === 14) {
+    chainRegular.add(nonGroupEvents[i - 1]);
+    chainRegular.add(nonGroupEvents[i]);
+  }
+}
+const kindOf = new Map();
+nonGroupEvents.forEach((event, index) => {
+  if (chainRegular.has(event)) {
+    kindOf.set(event, 'regular');
+    return;
+  }
+  const near = other =>
+    other && Math.abs(Date.parse(event.start) - Date.parse(other.start)) / DAY <= 9;
+  const prev = nonGroupEvents[index - 1];
+  const next = nonGroupEvents[index + 1];
+  if ((near(prev) && chainRegular.has(prev)) || (near(next) && chainRegular.has(next))) {
+    kindOf.set(event, 'extra');
+    return;
+  }
+  kindOf.set(event, 'regular');
+});
 
 for (let index = 0; index < officialEvents.length; index += 1) {
   const event = officialEvents[index];
@@ -125,20 +154,15 @@ for (let index = 0; index < officialEvents.length; index += 1) {
   const wikiRegular = regularFor.get(event) || null;
 
   const isGroup = Boolean(wikiGroup) || event.kindGuess === 'group';
-  let kind = isGroup ? 'group' : 'regular';
-  let kindEvidence = wikiGroup ? 'wiki-group' : event.kindGuess === 'group' ? 'official-window' : 'official-window';
-  let kindConfidence = 'confirmed';
-
-  // 加塞判定：与"上一条非常规复刻"的开档间隔 ≤ 9 天（社区口径，属推断）
-  if (!isGroup && prevNonGroupStart) {
-    const gap = dayDiff(event.start, prevNonGroupStart);
-    if (gap > 0 && gap <= 9) {
-      kind = 'extra';
-      kindEvidence = 'cadence-inference';
-      kindConfidence = 'inferred';
-    }
-  }
-  if (!isGroup) prevNonGroupStart = event.start;
+  const kind = isGroup ? 'group' : kindOf.get(event) || 'regular';
+  const kindEvidence = isGroup
+    ? wikiGroup
+      ? 'wiki-group'
+      : 'official-window'
+    : kind === 'extra'
+      ? 'off-cadence'
+      : 'biweekly-cadence';
+  const kindConfidence = kind === 'extra' ? 'inferred' : 'confirmed';
 
   const posts = event.posts
     .map(post => ({ ...post, feed: feedById.get(post.postId) }))
