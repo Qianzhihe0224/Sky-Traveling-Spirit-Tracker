@@ -26,6 +26,13 @@
     .badge.extra { color: #ffe6a8; border-color: rgba(255,209,102,.35); }
     .badge.group { color: #e6d5ff; border-color: rgba(201,167,255,.35); }
     .badge.done { color: #8ee6b0; border-color: rgba(142,230,176,.4); }
+    .seg { display: inline-flex; flex-wrap: wrap; gap: 2px; padding: 3px; border-radius: 10px;
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); }
+    .seg button { background: transparent; border: none; color: #92a4c8; border-radius: 8px;
+      padding: 5px 11px; font-size: 12.5px; cursor: pointer; font-family: inherit; }
+    .seg button:hover { color: #e8efff; }
+    .seg button.active { background: rgba(255,216,155,.16); color: #ffd89b; }
+    .kind-seg { width: 100%; justify-content: space-between; }
     .posts { margin: 10px 0; display: flex; flex-direction: column; gap: 4px; }
     .posts a { color: #7fd4ff; font-size: 12.5px; }
     .hint-line { font-size: 12.5px; color: #a9b9d8; }
@@ -50,12 +57,12 @@
 
     <div class="toolbar">
       <input id="search" type="search" placeholder="搜索标题 / 先祖 / 日期" />
-      <select id="filter">
-        <option value="all">全部候选</option>
-        <option value="unfinished">只看未核验</option>
-        <option value="extra">疑似加塞</option>
-        <option value="group">疑似集体</option>
-      </select>
+      <div class="seg" id="filter">
+        <button type="button" data-filter="all" class="active">全部候选</button>
+        <button type="button" data-filter="unfinished">只看未核验</button>
+        <button type="button" data-filter="extra">疑似加塞</button>
+        <button type="button" data-filter="group">疑似集体</button>
+      </div>
       <button class="primary" id="export">导出结果 JSON</button>
       <button id="clear">清空本地记录</button>
       <span class="muted small" id="counter"></span>
@@ -72,6 +79,7 @@
       var DATA = window.__SKY_DATA__;
       var list = document.getElementById('list');
       var store = load();
+      var filterValue = 'all';
 
       if (!REVIEW) {
         list.innerHTML = '<div class="card">没有候选数据，请先运行 <code>node scripts/classify.mjs</code>。</div>';
@@ -94,7 +102,7 @@
 
       function visible() {
         var q = document.getElementById('search').value.trim();
-        var filter = document.getElementById('filter').value;
+        var filter = filterValue;
         return REVIEW.events.filter(function (event) {
           var saved = store[idOf(event)] || {};
           if (filter === 'unfinished' && saved.done) return false;
@@ -137,12 +145,13 @@
             (images.length ? '<div class="thumbs">' + images.join('') + '</div>' : '') +
             '<div class="fields">' +
               '<div><label>先祖名字</label><input list="spirit-options" data-field="name" value="' + escapeHtml(saved.name || '') + '" placeholder="看图/查证后填写"></div>' +
-              '<div><label>类型</label><select data-field="kind">' +
+              '<div><label>类型</label><div class="seg kind-seg">' +
                 ['regular:常规', 'extra:加塞', 'group:集体'].map(function (item) {
                   var parts = item.split(':');
-                  return '<option value="' + parts[0] + '"' + ((saved.kind || event.kindGuess) === parts[0] ? ' selected' : '') + '>' + parts[1] + '</option>';
+                  var active = (saved.kind || event.kindGuess) === parts[0];
+                  return '<button type="button" data-kind-value="' + parts[0] + '" class="' + (active ? 'active' : '') + '">' + parts[1] + '</button>';
                 }).join('') +
-              '</select></div>' +
+              '</div></div>' +
               '<div><label>备注（名字来源 / 官方原文关键句）</label><input data-field="note" value="' + escapeHtml(saved.note || '') + '" placeholder="例如：公告图显示为该先祖"></div>' +
             '</div>' +
           '</div>';
@@ -167,17 +176,30 @@
         save();
       });
 
-      document.addEventListener('change', function (event) {
-        if (event.target.id === 'filter') { render(); return; }
-        var card = event.target.closest('.card[data-id]');
-        var field = event.target.getAttribute('data-field');
-        if (!card || !field) return;
-        var id = card.getAttribute('data-id');
-        var saved = store[id] || {};
-        saved[field] = event.target.value;
-        saved.done = Boolean(saved.name);
-        store[id] = saved;
-        save();
+      document.addEventListener('click', function (event) {
+        var filterBtn = event.target.closest('[data-filter]');
+        if (filterBtn) {
+          filterValue = filterBtn.getAttribute('data-filter');
+          document.querySelectorAll('[data-filter]').forEach(function (btn) {
+            btn.classList.toggle('active', btn === filterBtn);
+          });
+          render();
+          return;
+        }
+        var kindBtn = event.target.closest('[data-kind-value]');
+        if (kindBtn) {
+          var card = kindBtn.closest('.card[data-id]');
+          if (!card) return;
+          var id = card.getAttribute('data-id');
+          var saved = store[id] || {};
+          saved.kind = kindBtn.getAttribute('data-kind-value');
+          saved.done = Boolean(saved.name);
+          store[id] = saved;
+          save();
+          card.querySelectorAll('[data-kind-value]').forEach(function (btn) {
+            btn.classList.toggle('active', btn === kindBtn);
+          });
+        }
       });
 
       document.getElementById('search').addEventListener('input', render);

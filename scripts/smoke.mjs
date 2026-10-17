@@ -131,6 +131,58 @@ try {
   console.error(`✗ 详情抽屉失败：${err.message}`);
 }
 
+// review.html：候选核验页（自定义筛选/类型按钮）
+try {
+  const reviewHtml = fs.readFileSync('review.html', 'utf8');
+  const inline = [...reviewHtml.matchAll(/<script>([\s\S]*?)<\/script>/g)][0][1];
+  const reviewData = fs.readFileSync('data/review-data.js', 'utf8');
+  const appData = fs.readFileSync('data/app-data.js', 'utf8');
+
+  const el = () => ({
+    innerHTML: '', textContent: '', value: '', style: {}, attributes: {},
+    setAttribute() {}, getAttribute() { return null; }, addEventListener() {},
+    closest() { return null; }, querySelectorAll() { return []; },
+  });
+  const list = el();
+  const counter = el();
+  const search = el();
+  const document = {
+    getElementById(id) {
+      if (id === 'list') return list;
+      if (id === 'counter') return counter;
+      if (id === 'search') return search;
+      if (id === 'export' || id === 'clear') return el();
+      return null;
+    },
+    querySelectorAll() { return []; },
+    addEventListener() {},
+    createElement() { return el(); },
+    body: { appendChild() {} },
+  };
+  const sandbox = {
+    window: { __REVIEW__: null, __SKY_DATA__: null },
+    document,
+    localStorage: { getItem() { return null; }, setItem() {} },
+    Blob: class {}, URL: { createObjectURL() { return 'blob:'; }, revokeObjectURL() {} },
+    Date, JSON, console,
+  };
+  sandbox.globalThis = sandbox;
+  vm.createContext(sandbox);
+  vm.runInContext(reviewData, sandbox, { filename: 'data/review-data.js' });
+  vm.runInContext(appData, sandbox, { filename: 'data/app-data.js' });
+  vm.runInContext(inline, sandbox, { filename: 'review.html' });
+
+  if (!list.innerHTML.includes('data-kind-value')) throw new Error('卡片缺少类型按钮');
+  if (!list.innerHTML.includes('数据核验')) {
+    // 标题不在列表里，只校验卡片结构与至少一条记录
+  }
+  if (!list.innerHTML.includes('2026-10-15')) throw new Error('未渲染候选记录');
+  console.log(`✓ review.html 渲染正常（${list.innerHTML.length} 字节）`);
+} catch (err) {
+  failed += 1;
+  console.error(`✗ review.html 失败：${err.message}`);
+}
+
 if (failed) {
   console.error(`冒烟测试失败 ${failed} 项`);
   process.exit(1);
