@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>复刻候选核验 · 光遇国服复刻统计</title>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #0b1121; color: #e8efff; font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; line-height: 1.6; }
+    .wrap { width: min(1080px, calc(100% - 32px)); margin: 0 auto; padding: 22px 0 60px; }
+    h1 { font-size: 20px; margin: 0 0 6px; }
+    .muted { color: #92a4c8; }
+    .small { font-size: 12.5px; }
+    .toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 16px 0; }
+    button, input, select, textarea {
+      background: rgba(255,255,255,.05); color: #e8efff; border: 1px solid rgba(255,255,255,.12);
+      border-radius: 9px; padding: 7px 11px; font-size: 13px; font-family: inherit;
+    }
+    button { cursor: pointer; }
+    button.primary { background: linear-gradient(120deg, rgba(255,216,155,.22), rgba(127,212,255,.16)); border-color: rgba(255,216,155,.4); }
+    .card { border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.035); border-radius: 14px; padding: 16px; margin-bottom: 14px; }
+    .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .badge { font-size: 11.5px; border-radius: 999px; padding: 1px 9px; border: 1px solid rgba(255,255,255,.16); }
+    .badge.regular { color: #bfeaff; border-color: rgba(127,212,255,.35); }
+    .badge.extra { color: #ffe6a8; border-color: rgba(255,209,102,.35); }
+    .badge.group { color: #e6d5ff; border-color: rgba(201,167,255,.35); }
+    .badge.done { color: #8ee6b0; border-color: rgba(142,230,176,.4); }
+    .posts { margin: 10px 0; display: flex; flex-direction: column; gap: 4px; }
+    .posts a { color: #7fd4ff; font-size: 12.5px; }
+    .hint-line { font-size: 12.5px; color: #a9b9d8; }
+    .fields { display: grid; grid-template-columns: 1.2fr .8fr 1.6fr; gap: 10px; margin-top: 10px; }
+    @media (max-width: 700px) { .fields { grid-template-columns: 1fr; } }
+    label { display: block; font-size: 11.5px; color: #92a4c8; margin-bottom: 3px; }
+    textarea { min-height: 36px; resize: vertical; }
+    .thumbs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    .thumbs a { display: block; }
+    .thumbs img { width: 160px; height: 90px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255,255,255,.12); }
+    code { background: rgba(255,255,255,.07); padding: 1px 5px; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>复刻候选核验</h1>
+    <p class="muted small">
+      本页把 <code>data/review-data.js</code> 里的候选公告逐条列出，方便人工看图确认「哪位先祖 / 常规还是加塞」。
+      填写结果后点“导出结果”，把 JSON 交给数据维护者合并进 <code>data/occurrences.json</code>。
+      所有内容以官方公告链接为准；社区资料只用于补名字。
+    </p>
+
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="搜索标题 / 先祖 / 日期" />
+      <select id="filter">
+        <option value="all">全部候选</option>
+        <option value="unfinished">只看未核验</option>
+        <option value="extra">疑似加塞</option>
+        <option value="group">疑似集体</option>
+      </select>
+      <button class="primary" id="export">导出结果 JSON</button>
+      <button id="clear">清空本地记录</button>
+      <span class="muted small" id="counter"></span>
+    </div>
+
+    <div id="list"></div>
+  </div>
+
+  <script src="data/review-data.js"></script>
+  <script src="data/app-data.js"></script>
+  <script>
+    (function () {
+      var REVIEW = window.__REVIEW__;
+      var DATA = window.__SKY_DATA__;
+      var list = document.getElementById('list');
+      var store = load();
+
+      if (!REVIEW) {
+        list.innerHTML = '<div class="card">没有候选数据，请先运行 <code>node scripts/classify.mjs</code>。</div>';
+        return;
+      }
+
+      var spirits = DATA ? DATA.spirits.map(function (s) { return s.name; }) : [];
+      var datalist = document.createElement('datalist');
+      datalist.id = 'spirit-options';
+      datalist.innerHTML = spirits.map(function (name) { return '<option value="' + name + '">'; }).join('');
+      document.body.appendChild(datalist);
+
+      function load() {
+        try { return JSON.parse(localStorage.getItem('sky-review') || '{}'); } catch (e) { return {}; }
+      }
+      function save() {
+        try { localStorage.setItem('sky-review', JSON.stringify(store)); } catch (e) { /* file:// 下可能不可用 */ }
+      }
+      function idOf(event) { return event.id; }
+
+      function visible() {
+        var q = document.getElementById('search').value.trim();
+        var filter = document.getElementById('filter').value;
+        return REVIEW.events.filter(function (event) {
+          var saved = store[idOf(event)] || {};
+          if (filter === 'unfinished' && saved.done) return false;
+          if (filter === 'extra' && !event.suggestedExtra) return false;
+          if (filter === 'group' && event.kindGuess !== 'group') return false;
+          if (!q) return true;
+          var text = [event.start, event.start, event.note, (event.itemHints || []).join(' ')]
+            .concat((event.posts || []).map(function (p) { return p.title; }))
+            .join(' ');
+          return text.indexOf(q) >= 0;
+        });
+      }
+
+      function render() {
+        var events = visible();
+        document.getElementById('counter').textContent = '显示 ' + events.length + ' / ' + REVIEW.events.length + ' 条';
+        list.innerHTML = events.map(function (event) {
+          var id = idOf(event);
+          var saved = store[id] || {};
+          var posts = (event.posts || []).map(function (post) {
+            return '<a href="' + post.url + '" target="_blank" rel="noopener">' +
+              post.announcedAt.slice(0, 10) + ' · ' + escapeHtml(post.title || post.postKind || '公告') + '</a>';
+          }).join('');
+          var images = [];
+          (event.posts || []).forEach(function (post) {
+            (post.images || []).slice(0, 2).forEach(function (url) {
+              images.push('<a href="' + url + '" target="_blank" rel="noopener"><img loading="lazy" src="' + url + '" alt="公告图"></a>');
+            });
+          });
+          return '<div class="card" data-id="' + id + '">' +
+            '<div class="row">' +
+              '<span class="badge ' + (event.kindGuess === 'group' ? 'group' : 'regular') + '">' + (event.kindGuess === 'group' ? '疑似集体' : '疑似常规') + '</span>' +
+              (event.suggestedExtra ? '<span class="badge extra">疑似加塞</span>' : '') +
+              (saved.done ? '<span class="badge done">已核验</span>' : '') +
+              '<strong class="mono">' + event.start.slice(0, 16).replace('T', ' ') + ' → ' + event.end.slice(0, 16).replace('T', ' ') + '</strong>' +
+            '</div>' +
+            '<div class="hint-line">物品线索：' + escapeHtml((event.itemHints || []).join(' / ') || '—') +
+              ' · 位置线索：' + escapeHtml(event.locationHint || '—') + '</div>' +
+            '<div class="posts">' + posts + '</div>' +
+            (images.length ? '<div class="thumbs">' + images.join('') + '</div>' : '') +
+            '<div class="fields">' +
+              '<div><label>先祖名字</label><input list="spirit-options" data-field="name" value="' + escapeHtml(saved.name || '') + '" placeholder="看图/查证后填写"></div>' +
+              '<div><label>类型</label><select data-field="kind">' +
+                ['regular:常规', 'extra:加塞', 'group:集体'].map(function (item) {
+                  var parts = item.split(':');
+                  return '<option value="' + parts[0] + '"' + ((saved.kind || event.kindGuess) === parts[0] ? ' selected' : '') + '>' + parts[1] + '</option>';
+                }).join('') +
+              '</select></div>' +
+              '<div><label>备注（名字来源 / 官方原文关键句）</label><input data-field="note" value="' + escapeHtml(saved.note || '') + '" placeholder="例如：公告图显示为该先祖"></div>' +
+            '</div>' +
+          '</div>';
+        }).join('') || '<div class="card">没有匹配的候选</div>';
+      }
+
+      function escapeHtml(value) {
+        return String(value == null ? '' : value)
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      }
+
+      document.addEventListener('input', function (event) {
+        var card = event.target.closest('.card[data-id]');
+        if (!card) return;
+        var id = card.getAttribute('data-id');
+        var field = event.target.getAttribute('data-field');
+        if (!field) return;
+        var saved = store[id] || {};
+        saved[field] = event.target.value;
+        saved.done = Boolean(saved.name);
+        store[id] = saved;
+        save();
+      });
+
+      document.addEventListener('change', function (event) {
+        if (event.target.id === 'filter') { render(); return; }
+        var card = event.target.closest('.card[data-id]');
+        var field = event.target.getAttribute('data-field');
+        if (!card || !field) return;
+        var id = card.getAttribute('data-id');
+        var saved = store[id] || {};
+        saved[field] = event.target.value;
+        saved.done = Boolean(saved.name);
+        store[id] = saved;
+        save();
+      });
+
+      document.getElementById('search').addEventListener('input', render);
+      document.getElementById('export').addEventListener('click', function () {
+        var payload = {
+          exportedAt: new Date().toISOString(),
+          queueGeneratedAt: REVIEW.generatedAt,
+          records: Object.keys(store).map(function (id) {
+            var event = REVIEW.events.find(function (item) { return item.id === id; }) || {};
+            return Object.assign({ id: id, start: event.start, end: event.end, posts: (event.posts || []).map(function (p) { return p.url; }) }, store[id]);
+          })
+        };
+        var blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'review-results.json';
+        a.click();
+        setTimeout(function () { URL.revokeObjectURL(a.href); }, 1500);
+      });
+      document.getElementById('clear').addEventListener('click', function () {
+        if (!confirm('确定清空本地核验记录？')) return;
+        store = {};
+        save();
+        render();
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "sky-cn-returning-spirits",
+  "version": "1.0.0",
+  "private": true,
+  "description": "《光·遇》国服复刻先祖统计与可视化（常规 / 加塞 / 集体分列，官方公告可追溯）",
+  "type": "module",
+  "scripts": {
+    "sync": "node scripts/sync-dashen.mjs",
+    "wiki": "node scripts/fetch-wiki.mjs",
+    "classify": "node scripts/classify.mjs",
+    "import": "node scripts/import-data.mjs",
+    "build": "node scripts/build.mjs && node scripts/smoke.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "all": "node scripts/sync-dashen.mjs && node scripts/fetch-wiki.mjs && node scripts/classify.mjs && node scripts/import-data.mjs && node scripts/build.mjs && node scripts/smoke.mjs"
+  }
+}

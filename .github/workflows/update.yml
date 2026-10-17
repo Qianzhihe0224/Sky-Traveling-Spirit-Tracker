@@ -1,0 +1,79 @@
+name: Update data & deploy
+
+on:
+  schedule:
+    # 北京时间 09:15 / 21:15，每天两次（复刻公告一般在下午发布）
+    - cron: '15 1 * * *'
+    - cron: '15 13 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Sync official announcements (大神 Sky光遇)
+        run: node scripts/sync-dashen.mjs
+
+      - name: Sync community wiki records (补名字/核对)
+        continue-on-error: true
+        run: node scripts/fetch-wiki.mjs
+
+      - name: Classify, merge, validate
+        run: |
+          node scripts/classify.mjs
+          node scripts/import-data.mjs
+          node scripts/build.mjs
+          node scripts/smoke.mjs
+
+      - name: Commit data changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then
+            echo "数据无变化，跳过提交"
+          else
+            git commit -m "chore(data): auto update $(date -u +%Y-%m-%d)"
+            git push
+          fi
+
+      - name: Assemble static site
+        run: |
+          mkdir -p _site/data
+          cp index.html _site/
+          cp -r assets _site/assets
+          cp data/app-data.js _site/data/app-data.js
+          touch _site/.nojekyll
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,2168 @@
+{
+ "meta": {
+  "source": "derived",
+  "note": "由 import-data.mjs 从 occurrences 聚合"
+ },
+ "spirits": [
+  {
+   "id": "踏舞孩童",
+   "name": "踏舞孩童",
+   "seasons": [
+    "归属季"
+   ],
+   "season": "归属季",
+   "maps": [
+    "晨岛"
+   ],
+   "map": "晨岛",
+   "regular": 3,
+   "extra": 2,
+   "group": 0,
+   "total": 5,
+   "totalRC": 3,
+   "firstAt": "2021-02-11T06:00:00+08:00",
+   "lastAt": "2026-01-22T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 5,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "静光学者",
+   "name": "静光学者",
+   "seasons": [
+    "追光季"
+   ],
+   "season": "追光季",
+   "maps": [
+    "禁阁"
+   ],
+   "map": "禁阁",
+   "regular": 2,
+   "extra": 2,
+   "group": 0,
+   "total": 4,
+   "totalRC": 2,
+   "firstAt": "2020-10-08T06:00:00+08:00",
+   "lastAt": "2026-10-15T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 4,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "放松日浴者",
+   "name": "放松日浴者",
+   "seasons": [
+    "圣岛季"
+   ],
+   "season": "圣岛季",
+   "maps": [
+    "云野"
+   ],
+   "map": "云野",
+   "regular": 4,
+   "extra": 0,
+   "group": 0,
+   "total": 4,
+   "totalRC": 4,
+   "firstAt": "2021-07-01T12:00:00+08:00",
+   "lastAt": "2026-10-01T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 4,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "智慧长者",
+   "name": "智慧长者",
+   "seasons": [
+    "归属季"
+   ],
+   "season": "归属季",
+   "maps": [
+    "禁阁"
+   ],
+   "map": "禁阁",
+   "regular": 2,
+   "extra": 2,
+   "group": 0,
+   "total": 4,
+   "totalRC": 2,
+   "firstAt": "2021-05-20T06:00:00+08:00",
+   "lastAt": "2026-09-17T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 5,
+   "crossCheckDiff": -1
+  },
+  {
+   "id": "水先知",
+   "name": "水先知",
+   "seasons": [
+    "预言季"
+   ],
+   "season": "预言季",
+   "maps": [
+    "晨岛"
+   ],
+   "map": "晨岛",
+   "regular": 3,
+   "extra": 0,
+   "group": 1,
+   "total": 4,
+   "totalRC": 4,
+   "firstAt": "2021-12-16T06:00:00+08:00",
+   "lastAt": "2026-08-20T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2023-06-10",
+     "start": "2023-06-10T06:00:00+08:00",
+     "end": "2023-06-16T23:59:00+08:00",
+     "name": "预言季集体复刻"
+    }
+   ],
+   "wikiRegularCount": 4,
+   "crossCheckDiff": -1
+  },
+  {
+   "id": "击掌光农",
+   "name": "击掌光农",
+   "seasons": [
+    "追光季"
+   ],
+   "season": "追光季",
+   "maps": [
+    "云野"
+   ],
+   "map": "云野",
+   "regular": 3,
+   "extra": 1,
+   "group": 0,
+   "total": 4,
+   "totalRC": 3,
+   "firstAt": "2020-12-31T06:00:00+08:00",
+   "lastAt": "2026-07-23T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 6,
+   "crossCheckDiff": -2
+  },
+  {
+   "id": "致敬钢琴家",
+   "name": "致敬钢琴家",
+   "seasons": [
+    "音韵季"
+   ],
+   "season": "音韵季",
+   "maps": [
+    "暮土"
+   ],
+   "map": "暮土",
+   "regular": 3,
+   "extra": 1,
+   "group": 0,
+   "total": 4,
+   "totalRC": 3,
+   "firstAt": "2020-09-24T06:00:00+08:00",
+   "lastAt": "2026-06-11T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 4,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "母语者",
+   "name": "母语者",
+   "seasons": [
+    "圣岛季"
+   ],
+   "season": "圣岛季",
+   "maps": [
+    "云野"
+   ],
+   "map": "云野",
+   "regular": 3,
+   "extra": 1,
+   "group": 0,
+   "total": 4,
+   "totalRC": 3,
+   "firstAt": "2021-09-23T06:00:00+08:00",
+   "lastAt": "2026-04-16T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 4,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "白日梦森林人",
+   "name": "白日梦森林人",
+   "seasons": [
+    "集结季"
+   ],
+   "season": "集结季",
+   "maps": [
+    "雨林"
+   ],
+   "map": "雨林",
+   "regular": 3,
+   "extra": 0,
+   "group": 1,
+   "total": 4,
+   "totalRC": 4,
+   "firstAt": "2022-11-17T06:00:00+08:00",
+   "lastAt": "2026-04-04T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2026-04-04",
+     "start": "2026-04-04T06:00:00+08:00",
+     "end": "2026-04-17T23:59:00+08:00",
+     "name": "集结季集体复刻"
+    }
+   ],
+   "wikiRegularCount": 3,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "正步冒险家",
+   "name": "正步冒险家",
+   "seasons": [
+    "集结季"
+   ],
+   "season": "集结季",
+   "maps": [
+    "雨林"
+   ],
+   "map": "雨林",
+   "regular": 2,
+   "extra": 0,
+   "group": 2,
+   "total": 4,
+   "totalRC": 4,
+   "firstAt": "2022-07-14T06:00:00+08:00",
+   "lastAt": "2026-04-04T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2023-04-13",
+     "start": "2023-04-13T06:00:00+08:00",
+     "end": "2023-04-26T23:59:00+08:00",
+     "name": "集结季集体复刻"
+    },
+    {
+     "id": "ge-2026-04-04",
+     "start": "2026-04-04T06:00:00+08:00",
+     "end": "2026-04-17T23:59:00+08:00",
+     "name": "集结季集体复刻"
+    }
+   ],
+   "wikiRegularCount": 2,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "赞许壁画家",
+   "name": "赞许壁画家",
+   "seasons": [
+    "魔法季"
+   ],
+   "season": "魔法季",
+   "maps": [
+    "暮土"
+   ],
+   "map": "暮土",
+   "regular": 2,
+   "extra": 1,
+   "group": 1,
+   "total": 4,
+   "totalRC": 3,
+   "firstAt": "2021-06-17T06:00:00+08:00",
+   "lastAt": "2026-03-05T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2024-03-12",
+     "start": "2024-03-12T06:00:00+08:00",
+     "end": "2024-03-25T23:59:00+08:00",
+     "name": "集体复刻（4 位先祖）"
+    }
+   ],
+   "wikiRegularCount": 3,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "彩纸表亲",
+   "name": "彩纸表亲",
+   "seasons": [
+    "归属季"
+   ],
+   "season": "归属季",
+   "maps": [
+    "云野"
+   ],
+   "map": "云野",
+   "regular": 1,
+   "extra": 3,
+   "group": 0,
+   "total": 4,
+   "totalRC": 1,
+   "firstAt": "2021-02-18T06:00:00+08:00",
+   "lastAt": "2026-02-19T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 5,
+   "crossCheckDiff": -1
+  },
+  {
+   "id": "火花家长",
+   "name": "火花家长",
+   "seasons": [
+    "归属季"
+   ],
+   "season": "归属季",
+   "maps": [
+    "霞谷"
+   ],
+   "map": "霞谷",
+   "regular": 4,
+   "extra": 0,
+   "group": 0,
+   "total": 4,
+   "totalRC": 4,
+   "firstAt": "2020-08-27T06:00:00+08:00",
+   "lastAt": "2026-01-08T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 4,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "偷窥邮差",
+   "name": "偷窥邮差",
+   "seasons": [
+    "梦想季"
+   ],
+   "season": "梦想季",
+   "maps": [
+    "霞谷"
+   ],
+   "map": "霞谷",
+   "regular": 1,
+   "extra": 2,
+   "group": 1,
+   "total": 4,
+   "totalRC": 2,
+   "firstAt": "2022-02-10T06:00:00+08:00",
+   "lastAt": "2025-12-18T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2025-12-18",
+     "start": "2025-12-18T06:00:00+08:00",
+     "end": "2025-12-31T23:59:00+08:00",
+     "name": "集体复刻（4 位先祖）"
+    }
+   ],
+   "wikiRegularCount": 3,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "瞌睡木匠",
+   "name": "瞌睡木匠",
+   "seasons": [
+    "魔法季"
+   ],
+   "season": "魔法季",
+   "maps": [
+    "暮土"
+   ],
+   "map": "暮土",
+   "regular": 3,
+   "extra": 1,
+   "group": 0,
+   "total": 4,
+   "totalRC": 3,
+   "firstAt": "2021-10-07T06:00:00+08:00",
+   "lastAt": "2025-12-11T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 4,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "稻草人农夫",
+   "name": "稻草人农夫",
+   "seasons": [
+    "魔法季"
+   ],
+   "season": "魔法季",
+   "maps": [
+    "暮土"
+   ],
+   "map": "暮土",
+   "regular": 4,
+   "extra": 0,
+   "group": 0,
+   "total": 4,
+   "totalRC": 4,
+   "firstAt": "2021-08-12T06:00:00+08:00",
+   "lastAt": "2025-11-13T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 4,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "刁蛮浪者",
+   "name": "刁蛮浪者",
+   "seasons": [
+    "感恩季"
+   ],
+   "season": "感恩季",
+   "maps": [
+    "晨岛"
+   ],
+   "map": "晨岛",
+   "regular": 3,
+   "extra": 1,
+   "group": 0,
+   "total": 4,
+   "totalRC": 3,
+   "firstAt": "2020-12-17T06:00:00+08:00",
+   "lastAt": "2025-10-16T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 6,
+   "crossCheckDiff": -2
+  },
+  {
+   "id": "内秀书虫",
+   "name": "内秀书虫",
+   "seasons": [
+    "圣岛季"
+   ],
+   "season": "圣岛季",
+   "maps": [
+    "云野"
+   ],
+   "map": "云野",
+   "regular": 3,
+   "extra": 1,
+   "group": 0,
+   "total": 4,
+   "totalRC": 3,
+   "firstAt": "2021-10-21T06:00:00+08:00",
+   "lastAt": "2025-10-02T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 4,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "旋转舞者",
+   "name": "旋转舞者",
+   "seasons": [
+    "音韵季"
+   ],
+   "season": "音韵季",
+   "maps": [
+    "云野"
+   ],
+   "map": "云野",
+   "regular": 3,
+   "extra": 1,
+   "group": 0,
+   "total": 4,
+   "totalRC": 3,
+   "firstAt": "2021-07-15T12:00:00+08:00",
+   "lastAt": "2025-09-04T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 4,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "鸣谢收藏家",
+   "name": "鸣谢收藏家",
+   "seasons": [
+    "圣岛季"
+   ],
+   "season": "圣岛季",
+   "maps": [
+    "云野"
+   ],
+   "map": "云野",
+   "regular": 2,
+   "extra": 2,
+   "group": 0,
+   "total": 4,
+   "totalRC": 2,
+   "firstAt": "2021-08-26T06:00:00+08:00",
+   "lastAt": "2025-05-01T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 4,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "抛球杂耍",
+   "name": "抛球杂耍",
+   "seasons": [
+    "音韵季"
+   ],
+   "season": "音韵季",
+   "maps": [
+    "霞谷"
+   ],
+   "map": "霞谷",
+   "regular": 0,
+   "extra": 3,
+   "group": 1,
+   "total": 4,
+   "totalRC": 1,
+   "firstAt": "2020-10-01T06:00:00+08:00",
+   "lastAt": "2025-01-09T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2025-01-09",
+     "start": "2025-01-09T06:00:00+08:00",
+     "end": "2025-01-20T23:59:00+08:00",
+     "name": "集体复刻（4 位先祖）"
+    }
+   ],
+   "wikiRegularCount": 3,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "冷漠术士",
+   "name": "冷漠术士",
+   "seasons": [
+    "魔法季"
+   ],
+   "season": "魔法季",
+   "maps": [
+    "暮土"
+   ],
+   "map": "暮土",
+   "regular": 3,
+   "extra": 0,
+   "group": 1,
+   "total": 4,
+   "totalRC": 4,
+   "firstAt": "2021-01-14T06:00:00+08:00",
+   "lastAt": "2024-03-12T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2024-03-12",
+     "start": "2024-03-12T06:00:00+08:00",
+     "end": "2024-03-25T23:59:00+08:00",
+     "name": "集体复刻（4 位先祖）"
+    }
+   ],
+   "wikiRegularCount": 3,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "蓬头青年",
+   "name": "蓬头青年",
+   "seasons": [
+    "归属季"
+   ],
+   "season": "归属季",
+   "maps": [
+    "雨林"
+   ],
+   "map": "雨林",
+   "regular": 1,
+   "extra": 3,
+   "group": 0,
+   "total": 4,
+   "totalRC": 1,
+   "firstAt": "2020-08-06T06:00:00+08:00",
+   "lastAt": "2024-02-15T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 4,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "风行领航员",
+   "name": "风行领航员",
+   "seasons": [
+    "风行季"
+   ],
+   "season": "风行季",
+   "maps": [
+    "雨林"
+   ],
+   "map": "雨林",
+   "regular": 3,
+   "extra": 0,
+   "group": 0,
+   "total": 3,
+   "totalRC": 3,
+   "firstAt": "2024-01-25T06:00:00+08:00",
+   "lastAt": "2026-09-03T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 3,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "风铃修补匠",
+   "name": "风铃修补匠",
+   "seasons": [
+    "风行季"
+   ],
+   "season": "风行季",
+   "maps": [
+    "雨林"
+   ],
+   "map": "雨林",
+   "regular": 3,
+   "extra": 0,
+   "group": 0,
+   "total": 3,
+   "totalRC": 3,
+   "firstAt": "2023-11-02T06:00:00+08:00",
+   "lastAt": "2026-05-14T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 3,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "火先知",
+   "name": "火先知",
+   "seasons": [
+    "预言季"
+   ],
+   "season": "预言季",
+   "maps": [
+    "晨岛"
+   ],
+   "map": "晨岛",
+   "regular": 2,
+   "extra": 1,
+   "group": 0,
+   "total": 3,
+   "totalRC": 2,
+   "firstAt": "2021-12-30T06:00:00+08:00",
+   "lastAt": "2026-04-30T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 4,
+   "crossCheckDiff": -1
+  },
+  {
+   "id": "管事小队长",
+   "name": "管事小队长",
+   "seasons": [
+    "集结季"
+   ],
+   "season": "集结季",
+   "maps": [
+    "雨林"
+   ],
+   "map": "雨林",
+   "regular": 1,
+   "extra": 1,
+   "group": 1,
+   "total": 3,
+   "totalRC": 2,
+   "firstAt": "2023-04-29T06:00:00+08:00",
+   "lastAt": "2026-04-04T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2026-04-04",
+     "start": "2026-04-04T06:00:00+08:00",
+     "end": "2026-04-17T23:59:00+08:00",
+     "name": "集结季集体复刻"
+    }
+   ],
+   "wikiRegularCount": 2,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "胆小鬼学员",
+   "name": "胆小鬼学员",
+   "seasons": [
+    "集结季"
+   ],
+   "season": "集结季",
+   "maps": [
+    "雨林"
+   ],
+   "map": "雨林",
+   "regular": 1,
+   "extra": 0,
+   "group": 2,
+   "total": 3,
+   "totalRC": 3,
+   "firstAt": "2022-12-01T06:00:00+08:00",
+   "lastAt": "2026-04-04T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2023-04-13",
+     "start": "2023-04-13T06:00:00+08:00",
+     "end": "2023-04-26T23:59:00+08:00",
+     "name": "集结季集体复刻"
+    },
+    {
+     "id": "ge-2026-04-04",
+     "start": "2026-04-04T06:00:00+08:00",
+     "end": "2026-04-17T23:59:00+08:00",
+     "name": "集结季集体复刻"
+    }
+   ],
+   "wikiRegularCount": 2,
+   "crossCheckDiff": -1
+  },
+  {
+   "id": "迎宾侍者",
+   "name": "迎宾侍者",
+   "seasons": [
+    "音韵季"
+   ],
+   "season": "音韵季",
+   "maps": [
+    "晨岛"
+   ],
+   "map": "晨岛",
+   "regular": 3,
+   "extra": 0,
+   "group": 0,
+   "total": 3,
+   "totalRC": 3,
+   "firstAt": "2020-10-22T06:00:00+08:00",
+   "lastAt": "2025-12-25T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 3,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "熊抱雪人",
+   "name": "熊抱雪人",
+   "seasons": [
+    "梦想季"
+   ],
+   "season": "梦想季",
+   "maps": [
+    "霞谷"
+   ],
+   "map": "霞谷",
+   "regular": 1,
+   "extra": 1,
+   "group": 1,
+   "total": 3,
+   "totalRC": 2,
+   "firstAt": "2022-02-24T06:00:00+08:00",
+   "lastAt": "2025-12-18T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2025-12-18",
+     "start": "2025-12-18T06:00:00+08:00",
+     "end": "2025-12-31T23:59:00+08:00",
+     "name": "集体复刻（4 位先祖）"
+    }
+   ],
+   "wikiRegularCount": 2,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "不舍家长",
+   "name": "不舍家长",
+   "seasons": [
+    "归属季"
+   ],
+   "season": "归属季",
+   "maps": [
+    "暮土"
+   ],
+   "map": "暮土",
+   "regular": 3,
+   "extra": 0,
+   "group": 0,
+   "total": 3,
+   "totalRC": 3,
+   "firstAt": "2020-11-19T06:00:00+08:00",
+   "lastAt": "2025-11-27T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 4,
+   "crossCheckDiff": -1
+  },
+  {
+   "id": "固执登山者",
+   "name": "固执登山者",
+   "seasons": [
+    "圣岛季"
+   ],
+   "season": "圣岛季",
+   "maps": [
+    "云野"
+   ],
+   "map": "云野",
+   "regular": 2,
+   "extra": 1,
+   "group": 0,
+   "total": 3,
+   "totalRC": 2,
+   "firstAt": "2021-10-01T06:00:00+08:00",
+   "lastAt": "2025-06-26T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 3,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "随性拓荒者",
+   "name": "随性拓荒者",
+   "seasons": [
+    "追光季"
+   ],
+   "season": "追光季",
+   "maps": [
+    "雨林"
+   ],
+   "map": "雨林",
+   "regular": 1,
+   "extra": 2,
+   "group": 0,
+   "total": 3,
+   "totalRC": 1,
+   "firstAt": "2021-01-28T06:00:00+08:00",
+   "lastAt": "2025-04-26T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 4,
+   "crossCheckDiff": -1
+  },
+  {
+   "id": "沾沾自喜的自恋者",
+   "name": "沾沾自喜的自恋者",
+   "seasons": [
+    "小王子季"
+   ],
+   "season": "小王子季",
+   "maps": [
+    "禁阁"
+   ],
+   "map": "禁阁",
+   "regular": 1,
+   "extra": 1,
+   "group": 1,
+   "total": 3,
+   "totalRC": 2,
+   "firstAt": "2022-12-29T06:00:00+08:00",
+   "lastAt": "2025-04-08T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2025-04-08",
+     "start": "2025-04-08T06:00:00+08:00",
+     "end": "2025-04-21T23:59:00+08:00",
+     "name": "小王子季集体复刻"
+    }
+   ],
+   "wikiRegularCount": 2,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "被逼无奈的掌灯人",
+   "name": "被逼无奈的掌灯人",
+   "seasons": [
+    "小王子季"
+   ],
+   "season": "小王子季",
+   "maps": [
+    "禁阁"
+   ],
+   "map": "禁阁",
+   "regular": 0,
+   "extra": 2,
+   "group": 1,
+   "total": 3,
+   "totalRC": 1,
+   "firstAt": "2023-01-26T06:00:00+08:00",
+   "lastAt": "2025-04-08T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2025-04-08",
+     "start": "2025-04-08T06:00:00+08:00",
+     "end": "2025-04-21T23:59:00+08:00",
+     "name": "小王子季集体复刻"
+    }
+   ],
+   "wikiRegularCount": 2,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "挑衅艺伎",
+   "name": "挑衅艺伎",
+   "seasons": [
+    "感恩季"
+   ],
+   "season": "感恩季",
+   "maps": [
+    "雨林"
+   ],
+   "map": "雨林",
+   "regular": 3,
+   "extra": 0,
+   "group": 0,
+   "total": 3,
+   "totalRC": 3,
+   "firstAt": "2020-12-03T06:00:00+08:00",
+   "lastAt": "2025-04-03T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 4,
+   "crossCheckDiff": -1
+  },
+  {
+   "id": "肩背追光",
+   "name": "肩背追光",
+   "seasons": [
+    "追光季"
+   ],
+   "season": "追光季",
+   "maps": [
+    "晨岛"
+   ],
+   "map": "晨岛",
+   "regular": 3,
+   "extra": 0,
+   "group": 0,
+   "total": 3,
+   "totalRC": 3,
+   "firstAt": "2021-03-11T06:00:00+08:00",
+   "lastAt": "2025-03-20T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 4,
+   "crossCheckDiff": -1
+  },
+  {
+   "id": "拳礼武僧",
+   "name": "拳礼武僧",
+   "seasons": [
+    "感恩季"
+   ],
+   "season": "感恩季",
+   "maps": [
+    "禁阁"
+   ],
+   "map": "禁阁",
+   "regular": 1,
+   "extra": 2,
+   "group": 0,
+   "total": 3,
+   "totalRC": 1,
+   "firstAt": "2021-02-25T06:00:00+08:00",
+   "lastAt": "2025-02-06T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 3,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "回旋大师",
+   "name": "回旋大师",
+   "seasons": [
+    "梦想季"
+   ],
+   "season": "梦想季",
+   "maps": [
+    "霞谷"
+   ],
+   "map": "霞谷",
+   "regular": 2,
+   "extra": 1,
+   "group": 0,
+   "total": 3,
+   "totalRC": 2,
+   "firstAt": "2022-04-30T06:00:00+08:00",
+   "lastAt": "2025-01-23T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 3,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "热血运动员",
+   "name": "热血运动员",
+   "seasons": [
+    "圣岛季"
+   ],
+   "season": "圣岛季",
+   "maps": [
+    "云野"
+   ],
+   "map": "云野",
+   "regular": 3,
+   "extra": 0,
+   "group": 0,
+   "total": 3,
+   "totalRC": 3,
+   "firstAt": "2022-06-30T06:00:00+08:00",
+   "lastAt": "2024-07-25T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 3,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "风先知",
+   "name": "风先知",
+   "seasons": [
+    "预言季"
+   ],
+   "season": "预言季",
+   "maps": [
+    "晨岛"
+   ],
+   "map": "晨岛",
+   "regular": 2,
+   "extra": 0,
+   "group": 1,
+   "total": 3,
+   "totalRC": 3,
+   "firstAt": "2021-09-09T06:00:00+08:00",
+   "lastAt": "2024-07-11T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2023-06-10",
+     "start": "2023-06-10T06:00:00+08:00",
+     "end": "2023-06-16T23:59:00+08:00",
+     "name": "预言季集体复刻"
+    }
+   ],
+   "wikiRegularCount": 2,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "献情演员",
+   "name": "献情演员",
+   "seasons": [
+    "音韵季"
+   ],
+   "season": "音韵季",
+   "maps": [
+    "雨林"
+   ],
+   "map": "雨林",
+   "regular": 1,
+   "extra": 2,
+   "group": 0,
+   "total": 3,
+   "totalRC": 1,
+   "firstAt": "2021-05-01T06:00:00+08:00",
+   "lastAt": "2024-05-02T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 3,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "舒展大师",
+   "name": "舒展大师",
+   "seasons": [
+    "感恩季"
+   ],
+   "season": "感恩季",
+   "maps": [
+    "云野"
+   ],
+   "map": "云野",
+   "regular": 2,
+   "extra": 1,
+   "group": 0,
+   "total": 3,
+   "totalRC": 2,
+   "firstAt": "2021-04-22T06:00:00+08:00",
+   "lastAt": "2024-03-21T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 4,
+   "crossCheckDiff": -1
+  },
+  {
+   "id": "情绪草药师",
+   "name": "情绪草药师",
+   "seasons": [
+    "魔法季"
+   ],
+   "season": "魔法季",
+   "maps": [
+    "暮土"
+   ],
+   "map": "暮土",
+   "regular": 3,
+   "extra": 0,
+   "group": 0,
+   "total": 3,
+   "totalRC": 3,
+   "firstAt": "2021-06-03T06:00:00+08:00",
+   "lastAt": "2023-06-15T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 4,
+   "crossCheckDiff": -1
+  },
+  {
+   "id": "跳跃舞者",
+   "name": "跳跃舞者",
+   "seasons": [
+    "感恩季"
+   ],
+   "season": "感恩季",
+   "maps": [
+    "霞谷"
+   ],
+   "map": "霞谷",
+   "regular": 2,
+   "extra": 1,
+   "group": 0,
+   "total": 3,
+   "totalRC": 2,
+   "firstAt": "2020-08-13T06:00:00+08:00",
+   "lastAt": "2023-04-20T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 3,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "蟹语者",
+   "name": "蟹语者",
+   "seasons": [
+    "追光季"
+   ],
+   "season": "追光季",
+   "maps": [
+    "暮土"
+   ],
+   "map": "暮土",
+   "regular": 0,
+   "extra": 2,
+   "group": 0,
+   "total": 2,
+   "totalRC": 0,
+   "firstAt": "2022-05-05T06:00:00+08:00",
+   "lastAt": "2026-06-25T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 4,
+   "crossCheckDiff": -2
+  },
+  {
+   "id": "茫然植物学家",
+   "name": "茫然植物学家",
+   "seasons": [
+    "集结季"
+   ],
+   "season": "集结季",
+   "maps": [
+    "雨林"
+   ],
+   "map": "雨林",
+   "regular": 0,
+   "extra": 0,
+   "group": 2,
+   "total": 2,
+   "totalRC": 2,
+   "firstAt": "2023-04-13T06:00:00+08:00",
+   "lastAt": "2026-04-04T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2023-04-13",
+     "start": "2023-04-13T06:00:00+08:00",
+     "end": "2023-04-26T23:59:00+08:00",
+     "name": "集结季集体复刻"
+    },
+    {
+     "id": "ge-2026-04-04",
+     "start": "2026-04-04T06:00:00+08:00",
+     "end": "2026-04-17T23:59:00+08:00",
+     "name": "集结季集体复刻"
+    }
+   ],
+   "wikiRegularCount": 1,
+   "crossCheckDiff": -1
+  },
+  {
+   "id": "傻笑童子军",
+   "name": "傻笑童子军",
+   "seasons": [
+    "集结季"
+   ],
+   "season": "集结季",
+   "maps": [
+    "雨林"
+   ],
+   "map": "雨林",
+   "regular": 0,
+   "extra": 0,
+   "group": 2,
+   "total": 2,
+   "totalRC": 2,
+   "firstAt": "2023-04-13T06:00:00+08:00",
+   "lastAt": "2026-04-04T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2023-04-13",
+     "start": "2023-04-13T06:00:00+08:00",
+     "end": "2023-04-26T23:59:00+08:00",
+     "name": "集结季集体复刻"
+    },
+    {
+     "id": "ge-2026-04-04",
+     "start": "2026-04-04T06:00:00+08:00",
+     "end": "2026-04-17T23:59:00+08:00",
+     "name": "集结季集体复刻"
+    }
+   ],
+   "wikiRegularCount": null,
+   "crossCheckDiff": null
+  },
+  {
+   "id": "威严舰长",
+   "name": "威严舰长",
+   "seasons": [
+    "潜海季"
+   ],
+   "season": "潜海季",
+   "maps": [
+    "暮土"
+   ],
+   "map": "暮土",
+   "regular": 1,
+   "extra": 0,
+   "group": 1,
+   "total": 2,
+   "totalRC": 2,
+   "firstAt": "2024-03-12T06:00:00+08:00",
+   "lastAt": "2026-04-02T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2024-03-12",
+     "start": "2024-03-12T06:00:00+08:00",
+     "end": "2024-03-25T23:59:00+08:00",
+     "name": "集体复刻（4 位先祖）"
+    }
+   ],
+   "wikiRegularCount": 1,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "跳舞艺人",
+   "name": "跳舞艺人",
+   "seasons": [
+    "梦想季"
+   ],
+   "season": "梦想季",
+   "maps": [
+    "霞谷"
+   ],
+   "map": "霞谷",
+   "regular": 2,
+   "extra": 0,
+   "group": 0,
+   "total": 2,
+   "totalRC": 2,
+   "firstAt": "2023-10-19T06:00:00+08:00",
+   "lastAt": "2026-02-05T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 2,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "忙碌舞台管理员",
+   "name": "忙碌舞台管理员",
+   "seasons": [
+    "表演季"
+   ],
+   "season": "表演季",
+   "maps": [
+    "霞谷"
+   ],
+   "map": "霞谷",
+   "regular": 0,
+   "extra": 0,
+   "group": 2,
+   "total": 2,
+   "totalRC": 2,
+   "firstAt": "2024-03-12T06:00:00+08:00",
+   "lastAt": "2025-12-18T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2024-03-12",
+     "start": "2024-03-12T06:00:00+08:00",
+     "end": "2024-03-25T23:59:00+08:00",
+     "name": "集体复刻（4 位先祖）"
+    },
+    {
+     "id": "ge-2025-12-18",
+     "start": "2025-12-18T06:00:00+08:00",
+     "end": "2025-12-31T23:59:00+08:00",
+     "name": "集体复刻（4 位先祖）"
+    }
+   ],
+   "wikiRegularCount": null,
+   "crossCheckDiff": null
+  },
+  {
+   "id": "光之低语者",
+   "name": "光之低语者",
+   "seasons": [
+    "风行季"
+   ],
+   "season": "风行季",
+   "maps": [
+    "雨林"
+   ],
+   "map": "雨林",
+   "regular": 1,
+   "extra": 1,
+   "group": 0,
+   "total": 2,
+   "totalRC": 1,
+   "firstAt": "2024-04-27T06:00:00+08:00",
+   "lastAt": "2025-09-18T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 2,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "笨拙水手",
+   "name": "笨拙水手",
+   "seasons": [
+    "潜海季"
+   ],
+   "season": "潜海季",
+   "maps": [
+    "暮土"
+   ],
+   "map": "暮土",
+   "regular": 1,
+   "extra": 0,
+   "group": 1,
+   "total": 2,
+   "totalRC": 2,
+   "firstAt": "2025-04-17T06:00:00+08:00",
+   "lastAt": "2025-08-18T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2025-08-18",
+     "start": "2025-08-18T06:00:00+08:00",
+     "end": "2025-08-31T23:59:00+08:00",
+     "name": "集体复刻（4 位先祖）"
+    }
+   ],
+   "wikiRegularCount": 1,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "天才建筑师",
+   "name": "天才建筑师",
+   "seasons": [
+    "风行季"
+   ],
+   "season": "风行季",
+   "maps": [
+    "雨林"
+   ],
+   "map": "雨林",
+   "regular": 1,
+   "extra": 1,
+   "group": 0,
+   "total": 2,
+   "totalRC": 1,
+   "firstAt": "2023-12-28T06:00:00+08:00",
+   "lastAt": "2025-06-12T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 2,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "萎靡不振的士兵",
+   "name": "萎靡不振的士兵",
+   "seasons": [
+    "小王子季"
+   ],
+   "season": "小王子季",
+   "maps": [
+    "禁阁"
+   ],
+   "map": "禁阁",
+   "regular": 1,
+   "extra": 0,
+   "group": 1,
+   "total": 2,
+   "totalRC": 2,
+   "firstAt": "2023-11-30T06:00:00+08:00",
+   "lastAt": "2025-04-08T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2025-04-08",
+     "start": "2025-04-08T06:00:00+08:00",
+     "end": "2025-04-21T23:59:00+08:00",
+     "name": "小王子季集体复刻"
+    }
+   ],
+   "wikiRegularCount": 1,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "呼风唤雨的统治者",
+   "name": "呼风唤雨的统治者",
+   "seasons": [
+    "小王子季"
+   ],
+   "season": "小王子季",
+   "maps": [
+    "禁阁"
+   ],
+   "map": "禁阁",
+   "regular": 0,
+   "extra": 1,
+   "group": 1,
+   "total": 2,
+   "totalRC": 1,
+   "firstAt": "2023-06-29T06:00:00+08:00",
+   "lastAt": "2025-04-08T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2025-04-08",
+     "start": "2025-04-08T06:00:00+08:00",
+     "end": "2025-04-21T23:59:00+08:00",
+     "name": "小王子季集体复刻"
+    }
+   ],
+   "wikiRegularCount": 2,
+   "crossCheckDiff": -1
+  },
+  {
+   "id": "星光收藏家",
+   "name": "星光收藏家",
+   "seasons": [
+    "小王子季"
+   ],
+   "season": "小王子季",
+   "maps": [
+    "禁阁"
+   ],
+   "map": "禁阁",
+   "regular": 1,
+   "extra": 0,
+   "group": 1,
+   "total": 2,
+   "totalRC": 2,
+   "firstAt": "2023-07-13T06:00:00+08:00",
+   "lastAt": "2025-04-08T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2025-04-08",
+     "start": "2025-04-08T06:00:00+08:00",
+     "end": "2025-04-21T23:59:00+08:00",
+     "name": "小王子季集体复刻"
+    }
+   ],
+   "wikiRegularCount": 1,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "打喷嚏的地理学家",
+   "name": "打喷嚏的地理学家",
+   "seasons": [
+    "小王子季"
+   ],
+   "season": "小王子季",
+   "maps": [
+    "禁阁"
+   ],
+   "map": "禁阁",
+   "regular": 1,
+   "extra": 0,
+   "group": 1,
+   "total": 2,
+   "totalRC": 2,
+   "firstAt": "2023-09-21T06:00:00+08:00",
+   "lastAt": "2025-04-08T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2025-04-08",
+     "start": "2025-04-08T06:00:00+08:00",
+     "end": "2025-04-21T23:59:00+08:00",
+     "name": "小王子季集体复刻"
+    }
+   ],
+   "wikiRegularCount": 1,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "土先知",
+   "name": "土先知",
+   "seasons": [
+    "预言季"
+   ],
+   "season": "预言季",
+   "maps": [
+    "晨岛"
+   ],
+   "map": "晨岛",
+   "regular": 1,
+   "extra": 0,
+   "group": 1,
+   "total": 2,
+   "totalRC": 2,
+   "firstAt": "2021-12-02T06:00:00+08:00",
+   "lastAt": "2023-06-10T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2023-06-10",
+     "start": "2023-06-10T06:00:00+08:00",
+     "end": "2023-06-16T23:59:00+08:00",
+     "name": "预言季集体复刻"
+    }
+   ],
+   "wikiRegularCount": 2,
+   "crossCheckDiff": -1
+  },
+  {
+   "id": "敬礼护卫",
+   "name": "敬礼护卫",
+   "seasons": [
+    "感恩季"
+   ],
+   "season": "感恩季",
+   "maps": [
+    "暮土"
+   ],
+   "map": "暮土",
+   "regular": 2,
+   "extra": 0,
+   "group": 0,
+   "total": 2,
+   "totalRC": 2,
+   "firstAt": "2021-03-25T06:00:00+08:00",
+   "lastAt": "2023-03-23T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 4,
+   "crossCheckDiff": -2
+  },
+  {
+   "id": "沉思编导",
+   "name": "沉思编导",
+   "seasons": [
+    "音韵季"
+   ],
+   "season": "音韵季",
+   "maps": [
+    "禁阁"
+   ],
+   "map": "禁阁",
+   "regular": 2,
+   "extra": 0,
+   "group": 0,
+   "total": 2,
+   "totalRC": 2,
+   "firstAt": "2020-09-10T06:00:00+08:00",
+   "lastAt": "2022-09-22T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 3,
+   "crossCheckDiff": -1
+  },
+  {
+   "id": "采药人",
+   "name": "采药人",
+   "seasons": [
+    "九色鹿季"
+   ],
+   "season": "九色鹿季",
+   "maps": [
+    "禁阁"
+   ],
+   "map": "禁阁",
+   "regular": 0,
+   "extra": 0,
+   "group": 1,
+   "total": 1,
+   "totalRC": 1,
+   "firstAt": "2026-09-24T06:00:00+08:00",
+   "lastAt": "2026-09-24T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2026-09-24",
+     "start": "2026-09-24T06:00:00+08:00",
+     "end": "2026-10-14T23:59:00+08:00",
+     "name": "九色鹿季集体复刻"
+    }
+   ],
+   "wikiRegularCount": null,
+   "crossCheckDiff": null
+  },
+  {
+   "id": "猎手",
+   "name": "猎手",
+   "seasons": [
+    "九色鹿季"
+   ],
+   "season": "九色鹿季",
+   "maps": [
+    "禁阁"
+   ],
+   "map": "禁阁",
+   "regular": 0,
+   "extra": 0,
+   "group": 1,
+   "total": 1,
+   "totalRC": 1,
+   "firstAt": "2026-09-24T06:00:00+08:00",
+   "lastAt": "2026-09-24T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2026-09-24",
+     "start": "2026-09-24T06:00:00+08:00",
+     "end": "2026-10-14T23:59:00+08:00",
+     "name": "九色鹿季集体复刻"
+    }
+   ],
+   "wikiRegularCount": null,
+   "crossCheckDiff": null
+  },
+  {
+   "id": "公主",
+   "name": "公主",
+   "seasons": [
+    "九色鹿季"
+   ],
+   "season": "九色鹿季",
+   "maps": [
+    "禁阁"
+   ],
+   "map": "禁阁",
+   "regular": 0,
+   "extra": 0,
+   "group": 1,
+   "total": 1,
+   "totalRC": 1,
+   "firstAt": "2026-09-24T06:00:00+08:00",
+   "lastAt": "2026-09-24T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2026-09-24",
+     "start": "2026-09-24T06:00:00+08:00",
+     "end": "2026-10-14T23:59:00+08:00",
+     "name": "九色鹿季集体复刻"
+    }
+   ],
+   "wikiRegularCount": null,
+   "crossCheckDiff": null
+  },
+  {
+   "id": "领主",
+   "name": "领主",
+   "seasons": [
+    "九色鹿季"
+   ],
+   "season": "九色鹿季",
+   "maps": [
+    "禁阁"
+   ],
+   "map": "禁阁",
+   "regular": 0,
+   "extra": 0,
+   "group": 1,
+   "total": 1,
+   "totalRC": 1,
+   "firstAt": "2026-09-24T06:00:00+08:00",
+   "lastAt": "2026-09-24T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2026-09-24",
+     "start": "2026-09-24T06:00:00+08:00",
+     "end": "2026-10-14T23:59:00+08:00",
+     "name": "九色鹿季集体复刻"
+    }
+   ],
+   "wikiRegularCount": null,
+   "crossCheckDiff": null
+  },
+  {
+   "id": "可靠护林员",
+   "name": "可靠护林员",
+   "seasons": [
+    "拾光季"
+   ],
+   "season": "拾光季",
+   "maps": [
+    "云野"
+   ],
+   "map": "云野",
+   "regular": 1,
+   "extra": 0,
+   "group": 0,
+   "total": 1,
+   "totalRC": 1,
+   "firstAt": "2026-08-06T06:00:00+08:00",
+   "lastAt": "2026-08-06T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 1,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "活跃优等生",
+   "name": "活跃优等生",
+   "seasons": [
+    "夜行季"
+   ],
+   "season": "夜行季",
+   "maps": [
+    "晨岛"
+   ],
+   "map": "晨岛",
+   "regular": 1,
+   "extra": 0,
+   "group": 0,
+   "total": 1,
+   "totalRC": 1,
+   "firstAt": "2026-07-09T06:00:00+08:00",
+   "lastAt": "2026-07-09T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 1,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "希望之种",
+   "name": "希望之种",
+   "seasons": [
+    "欧若拉季"
+   ],
+   "season": "欧若拉季",
+   "maps": [
+    "霞谷"
+   ],
+   "map": "霞谷",
+   "regular": 0,
+   "extra": 1,
+   "group": 0,
+   "total": 1,
+   "totalRC": 0,
+   "firstAt": "2026-06-18T06:00:00+08:00",
+   "lastAt": "2026-06-18T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 1,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "忧郁自艾者",
+   "name": "忧郁自艾者",
+   "seasons": [
+    "夜行季"
+   ],
+   "season": "夜行季",
+   "maps": [
+    "晨岛"
+   ],
+   "map": "晨岛",
+   "regular": 1,
+   "extra": 0,
+   "group": 0,
+   "total": 1,
+   "totalRC": 1,
+   "firstAt": "2026-05-28T06:00:00+08:00",
+   "lastAt": "2026-05-28T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 1,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "细心矿工",
+   "name": "细心矿工",
+   "seasons": [
+    "欧若拉季"
+   ],
+   "season": "欧若拉季",
+   "maps": [
+    "霞谷"
+   ],
+   "map": "霞谷",
+   "regular": 1,
+   "extra": 0,
+   "group": 0,
+   "total": 1,
+   "totalRC": 1,
+   "firstAt": "2026-03-19T06:00:00+08:00",
+   "lastAt": "2026-03-19T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 1,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "夜行鸟语者",
+   "name": "夜行鸟语者",
+   "seasons": [
+    "拾光季"
+   ],
+   "season": "拾光季",
+   "maps": [
+    "云野"
+   ],
+   "map": "云野",
+   "regular": 0,
+   "extra": 1,
+   "group": 0,
+   "total": 1,
+   "totalRC": 0,
+   "firstAt": "2026-02-14T06:00:00+08:00",
+   "lastAt": "2026-02-14T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 1,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "老练音乐家",
+   "name": "老练音乐家",
+   "seasons": [
+    "表演季"
+   ],
+   "season": "表演季",
+   "maps": [
+    "霞谷"
+   ],
+   "map": "霞谷",
+   "regular": 0,
+   "extra": 0,
+   "group": 1,
+   "total": 1,
+   "totalRC": 1,
+   "firstAt": "2025-12-18T06:00:00+08:00",
+   "lastAt": "2025-12-18T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2025-12-18",
+     "start": "2025-12-18T06:00:00+08:00",
+     "end": "2025-12-31T23:59:00+08:00",
+     "name": "集体复刻（4 位先祖）"
+    }
+   ],
+   "wikiRegularCount": 1,
+   "crossCheckDiff": -1
+  },
+  {
+   "id": "苦修行者",
+   "name": "苦修行者",
+   "seasons": [
+    "拾光季"
+   ],
+   "season": "拾光季",
+   "maps": [
+    "云野"
+   ],
+   "map": "云野",
+   "regular": 1,
+   "extra": 0,
+   "group": 0,
+   "total": 1,
+   "totalRC": 1,
+   "firstAt": "2025-10-30T06:00:00+08:00",
+   "lastAt": "2025-10-30T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 1,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "愉悦地理学家",
+   "name": "愉悦地理学家",
+   "seasons": [
+    "拾光季"
+   ],
+   "season": "拾光季",
+   "maps": [
+    "云野"
+   ],
+   "map": "云野",
+   "regular": 0,
+   "extra": 1,
+   "group": 0,
+   "total": 1,
+   "totalRC": 0,
+   "firstAt": "2025-09-27T06:00:00+08:00",
+   "lastAt": "2025-09-27T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 1,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "嬉笑炮手",
+   "name": "嬉笑炮手",
+   "seasons": [
+    "潜海季"
+   ],
+   "season": "潜海季",
+   "maps": [
+    "暮土"
+   ],
+   "map": "暮土",
+   "regular": 1,
+   "extra": 0,
+   "group": 0,
+   "total": 1,
+   "totalRC": 1,
+   "firstAt": "2025-08-21T06:00:00+08:00",
+   "lastAt": "2025-08-21T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 1,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "蹑足沏茶师",
+   "name": "蹑足沏茶师",
+   "seasons": [
+    "追忆季"
+   ],
+   "season": "追忆季",
+   "maps": [
+    "禁阁"
+   ],
+   "map": "禁阁",
+   "regular": 0,
+   "extra": 0,
+   "group": 1,
+   "total": 1,
+   "totalRC": 1,
+   "firstAt": "2025-08-18T06:00:00+08:00",
+   "lastAt": "2025-08-18T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2025-08-18",
+     "start": "2025-08-18T06:00:00+08:00",
+     "end": "2025-08-31T23:59:00+08:00",
+     "name": "集体复刻（4 位先祖）"
+    }
+   ],
+   "wikiRegularCount": null,
+   "crossCheckDiff": null
+  },
+  {
+   "id": "负伤战士",
+   "name": "负伤战士",
+   "seasons": [
+    "追忆季"
+   ],
+   "season": "追忆季",
+   "maps": [
+    "禁阁"
+   ],
+   "map": "禁阁",
+   "regular": 0,
+   "extra": 0,
+   "group": 1,
+   "total": 1,
+   "totalRC": 1,
+   "firstAt": "2025-08-18T06:00:00+08:00",
+   "lastAt": "2025-08-18T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2025-08-18",
+     "start": "2025-08-18T06:00:00+08:00",
+     "end": "2025-08-31T23:59:00+08:00",
+     "name": "集体复刻（4 位先祖）"
+    }
+   ],
+   "wikiRegularCount": null,
+   "crossCheckDiff": null
+  },
+  {
+   "id": "焦虑渔夫",
+   "name": "焦虑渔夫",
+   "seasons": [
+    "潜海季"
+   ],
+   "season": "潜海季",
+   "maps": [
+    "暮土"
+   ],
+   "map": "暮土",
+   "regular": 0,
+   "extra": 0,
+   "group": 1,
+   "total": 1,
+   "totalRC": 1,
+   "firstAt": "2025-08-18T06:00:00+08:00",
+   "lastAt": "2025-08-18T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2025-08-18",
+     "start": "2025-08-18T06:00:00+08:00",
+     "end": "2025-08-31T23:59:00+08:00",
+     "name": "集体复刻（4 位先祖）"
+    }
+   ],
+   "wikiRegularCount": 1,
+   "crossCheckDiff": -1
+  },
+  {
+   "id": "翻滚捣蛋鬼",
+   "name": "翻滚捣蛋鬼",
+   "seasons": [
+    "夜行季"
+   ],
+   "season": "夜行季",
+   "maps": [
+    "晨岛"
+   ],
+   "map": "晨岛",
+   "regular": 1,
+   "extra": 0,
+   "group": 0,
+   "total": 1,
+   "totalRC": 1,
+   "firstAt": "2025-07-10T06:00:00+08:00",
+   "lastAt": "2025-07-10T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 1,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "爱之战士",
+   "name": "爱之战士",
+   "seasons": [
+    "欧若拉季"
+   ],
+   "season": "欧若拉季",
+   "maps": [
+    "霞谷"
+   ],
+   "map": "霞谷",
+   "regular": 1,
+   "extra": 0,
+   "group": 0,
+   "total": 1,
+   "totalRC": 1,
+   "firstAt": "2025-02-20T06:00:00+08:00",
+   "lastAt": "2025-02-20T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 1,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "健忘叙事者",
+   "name": "健忘叙事者",
+   "seasons": [
+    "表演季"
+   ],
+   "season": "表演季",
+   "maps": [
+    "霞谷"
+   ],
+   "map": "霞谷",
+   "regular": 0,
+   "extra": 1,
+   "group": 0,
+   "total": 1,
+   "totalRC": 0,
+   "firstAt": "2025-01-28T06:00:00+08:00",
+   "lastAt": "2025-01-28T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 1,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "古怪边缘人",
+   "name": "古怪边缘人",
+   "seasons": [
+    "夜行季"
+   ],
+   "season": "夜行季",
+   "maps": [
+    "晨岛"
+   ],
+   "map": "晨岛",
+   "regular": 0,
+   "extra": 0,
+   "group": 1,
+   "total": 1,
+   "totalRC": 1,
+   "firstAt": "2025-01-09T06:00:00+08:00",
+   "lastAt": "2025-01-09T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2025-01-09",
+     "start": "2025-01-09T06:00:00+08:00",
+     "end": "2025-01-20T23:59:00+08:00",
+     "name": "集体复刻（4 位先祖）"
+    }
+   ],
+   "wikiRegularCount": null,
+   "crossCheckDiff": null
+  },
+  {
+   "id": "乞求孩童",
+   "name": "乞求孩童",
+   "seasons": [
+    "追忆季"
+   ],
+   "season": "追忆季",
+   "maps": [
+    "禁阁"
+   ],
+   "map": "禁阁",
+   "regular": 0,
+   "extra": 0,
+   "group": 1,
+   "total": 1,
+   "totalRC": 1,
+   "firstAt": "2025-01-09T06:00:00+08:00",
+   "lastAt": "2025-01-09T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2025-01-09",
+     "start": "2025-01-09T06:00:00+08:00",
+     "end": "2025-01-20T23:59:00+08:00",
+     "name": "集体复刻（4 位先祖）"
+    }
+   ],
+   "wikiRegularCount": null,
+   "crossCheckDiff": null
+  },
+  {
+   "id": "谦虚舞者",
+   "name": "谦虚舞者",
+   "seasons": [
+    "表演季"
+   ],
+   "season": "表演季",
+   "maps": [
+    "霞谷"
+   ],
+   "map": "霞谷",
+   "regular": 0,
+   "extra": 0,
+   "group": 1,
+   "total": 1,
+   "totalRC": 1,
+   "firstAt": "2025-01-09T06:00:00+08:00",
+   "lastAt": "2025-01-09T06:00:00+08:00",
+   "groupEvents": [
+    {
+     "id": "ge-2025-01-09",
+     "start": "2025-01-09T06:00:00+08:00",
+     "end": "2025-01-20T23:59:00+08:00",
+     "name": "集体复刻（4 位先祖）"
+    }
+   ],
+   "wikiRegularCount": null,
+   "crossCheckDiff": null
+  },
+  {
+   "id": "螺旋武冠",
+   "name": "螺旋武冠",
+   "seasons": [
+    "追光季"
+   ],
+   "season": "追光季",
+   "maps": [
+    "霞谷"
+   ],
+   "map": "霞谷",
+   "regular": 0,
+   "extra": 1,
+   "group": 0,
+   "total": 1,
+   "totalRC": 0,
+   "firstAt": "2021-05-06T06:00:00+08:00",
+   "lastAt": "2021-05-06T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 1,
+   "crossCheckDiff": 0
+  },
+  {
+   "id": "蟹舞者",
+   "name": "蟹舞者",
+   "seasons": [
+    "魔法季"
+   ],
+   "season": "魔法季",
+   "maps": [
+    "暮土"
+   ],
+   "map": "暮土",
+   "regular": 1,
+   "extra": 0,
+   "group": 0,
+   "total": 1,
+   "totalRC": 1,
+   "firstAt": "2021-04-08T06:00:00+08:00",
+   "lastAt": "2021-04-08T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 1,
+   "crossCheckDiff": 0
+  }
+ ]
+}
