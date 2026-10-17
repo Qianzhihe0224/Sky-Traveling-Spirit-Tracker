@@ -532,8 +532,11 @@
           '<div class="table-wrap"><table><thead><tr><th>时间</th><th>先祖</th><th>季节 / 地图</th><th>来源</th></tr></thead><tbody>' + pending + '</tbody></table></div></div>' +
 
         '<div class="card section"><h2>未归属：官方有复刻、名字未确认 <small>' + UNMATCHED.length + ' 条</small></h2>' +
-        '<p class="small muted">知道名字的话，可在 <code>data/manual-names.json</code> 里按开始日期补录，然后运行 <code>npm run build</code>（详见 README「补录 / 更正先祖名字」）。</p>' +
-          '<div class="table-wrap"><table><thead><tr><th>时间</th><th>说明</th><th>来源</th></tr></thead><tbody>' + unmatched + '</tbody></table></div></div>' +
+        (UNMATCHED.length
+          ? '<p class="small muted">知道名字的话，可在 <code>data/manual-names.json</code> 里按开始日期补录，然后运行 <code>npm run build</code>（详见 README「补录 / 更正先祖名字」）。</p>' +
+            '<div class="table-wrap"><table><thead><tr><th>时间</th><th>说明</th><th>来源</th></tr></thead><tbody>' + unmatched + '</tbody></table></div>'
+          : '<p class="small muted">全部官方复刻都已确认到具体先祖。若发现名字有误，可在 <code>data/manual-names.json</code> 里更正。</p>') +
+        '</div>' +
 
         '<div class="card section"><h2>导出与更新</h2>' +
         '<p class="small">代码、数据与自动更新工作流都在 <a href="https://github.com/Qianzhihe0224/Sky-Traveling-Spirit-Tracker" target="_blank" rel="noopener">GitHub 仓库</a>，欢迎提 issue 或 PR 补充史料。</p>' +
@@ -570,8 +573,13 @@
     var occHtml = occs.length ? occs.map(function (occ) {
       var inferred = occ.kind === 'extra' && occ.kindConfidence === 'inferred'
         ? ' <span class="badge ghost" title="官方公告不会自称加塞，这是按档期推断">推断</span>' : '';
-      var nameNote = occ.nameVerification && occ.nameVerification.status === 'community'
-        ? '<div class="small muted">名字来源：社区 Wiki（官方公告正文未写名）</div>' : '';
+      var nameNote = '';
+      if (occ.nameVerification && occ.nameVerification.status === 'community') {
+        nameNote = '<div class="small muted">名字来源：社区 Wiki（官方公告正文未写名）</div>';
+      } else if (occ.nameVerification && occ.nameVerification.status === 'manual') {
+        nameNote = '<div class="small muted">名字来源：人工补录（' +
+          esc(occ.nameVerification.note || '官方公告未写名') + '）</div>';
+      }
       return '<div class="occ"><div class="row1"><div class="date mono">' + fmtRange(occ.start, occ.end) + '</div>' +
         '<div>' + kindBadge(occ.kind) + inferred + '</div></div>' +
         '<div class="small muted">公告 ' + esc(fmtDate(occ.source && occ.source.announcedAt)) +

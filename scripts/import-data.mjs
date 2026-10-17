@@ -345,7 +345,13 @@ const pending = wiki.entries
     factStatus: 'pending',
     reason: '社区 Wiki 有记录，但未找到对应的官方公告',
     source: { type: 'wiki', url: WIKI_URL },
-  }));
+  }))
+  // 同一位先祖在 ±4 天内已有官方记录 → 视为同一次回归的日期差异，不再重复列为待考证
+  .filter(item =>
+    !occurrences.some(
+      occ => occ.spiritName === item.name && Math.abs(dayDiff(occ.start, item.start)) <= 4,
+    ),
+  );
 
 // ---------- 6. 先祖统计 ----------
 const spirits = [...spiritMeta.keys()].map(name => {

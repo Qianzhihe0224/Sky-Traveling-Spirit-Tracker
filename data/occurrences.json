@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-10-17T16:17:47.762Z",
+  "generatedAt": "2026-10-17T16:24:55.589Z",
   "dataCutoff": "2026-10-19T12:00:00+08:00",
   "coverage": {
    "from": "2020-08-06T06:00:00+08:00",
@@ -17,8 +17,8 @@
    "groups": 9,
    "spirits": 86,
    "catalog": 90,
-   "pending": 24,
-   "unmatched": 2
+   "pending": 23,
+   "unmatched": 0
   },
   "sources": [
    {
@@ -559,6 +559,28 @@
    "crossCheckDiff": 0
   },
   {
+   "id": "献情演员",
+   "name": "献情演员",
+   "seasons": [
+    "音韵季"
+   ],
+   "season": "音韵季",
+   "maps": [
+    "雨林"
+   ],
+   "map": "雨林",
+   "regular": 2,
+   "extra": 2,
+   "group": 0,
+   "total": 4,
+   "totalRC": 2,
+   "firstAt": "2021-05-01T06:00:00+08:00",
+   "lastAt": "2024-05-09T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 3,
+   "crossCheckDiff": 1
+  },
+  {
    "id": "冷漠术士",
    "name": "冷漠术士",
    "seasons": [
@@ -630,6 +652,28 @@
    "groupEvents": [],
    "wikiRegularCount": 3,
    "crossCheckDiff": 0
+  },
+  {
+   "id": "蟹语者",
+   "name": "蟹语者",
+   "seasons": [
+    "追光季"
+   ],
+   "season": "追光季",
+   "maps": [
+    "暮土"
+   ],
+   "map": "暮土",
+   "regular": 3,
+   "extra": 0,
+   "group": 0,
+   "total": 3,
+   "totalRC": 3,
+   "firstAt": "2020-11-05T06:00:00+08:00",
+   "lastAt": "2026-06-25T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 4,
+   "crossCheckDiff": -1
   },
   {
    "id": "风铃修补匠",
@@ -1054,28 +1098,6 @@
    "crossCheckDiff": 0
   },
   {
-   "id": "献情演员",
-   "name": "献情演员",
-   "seasons": [
-    "音韵季"
-   ],
-   "season": "音韵季",
-   "maps": [
-    "雨林"
-   ],
-   "map": "雨林",
-   "regular": 2,
-   "extra": 1,
-   "group": 0,
-   "total": 3,
-   "totalRC": 2,
-   "firstAt": "2021-05-01T06:00:00+08:00",
-   "lastAt": "2024-05-02T06:00:00+08:00",
-   "groupEvents": [],
-   "wikiRegularCount": 3,
-   "crossCheckDiff": 0
-  },
-  {
    "id": "舒展大师",
    "name": "舒展大师",
    "seasons": [
@@ -1140,28 +1162,6 @@
    "groupEvents": [],
    "wikiRegularCount": 3,
    "crossCheckDiff": 0
-  },
-  {
-   "id": "蟹语者",
-   "name": "蟹语者",
-   "seasons": [
-    "追光季"
-   ],
-   "season": "追光季",
-   "maps": [
-    "暮土"
-   ],
-   "map": "暮土",
-   "regular": 2,
-   "extra": 0,
-   "group": 0,
-   "total": 2,
-   "totalRC": 2,
-   "firstAt": "2022-05-05T06:00:00+08:00",
-   "lastAt": "2026-06-25T06:00:00+08:00",
-   "groupEvents": [],
-   "wikiRegularCount": 4,
-   "crossCheckDiff": -2
   },
   {
    "id": "茫然植物学家",
@@ -6193,9 +6193,9 @@
    "note": ""
   },
   {
-   "id": "oc-2024-05-09-unknown",
-   "spiritId": null,
-   "spiritName": null,
+   "id": "oc-2024-05-09-献情演员",
+   "spiritId": "献情演员",
+   "spiritName": "献情演员",
    "kind": "extra",
    "kindEvidence": "off-cadence",
    "kindConfidence": "inferred",
@@ -6205,9 +6205,14 @@
    "windowSource": "relative-weekday",
    "factStatus": "confirmed",
    "nameVerification": {
-    "status": "unresolved",
-    "evidence": [],
-    "note": ""
+    "status": "manual",
+    "evidence": [
+     {
+      "type": "manual",
+      "url": "https://ds.163.com/feed/663b29f6dacd5f5b1370ec9f/"
+     }
+    ],
+    "note": "用户确认为献情演员（官方公告未写名；Wiki 未收录这次加塞）"
    },
    "source": {
     "type": "dashen",
@@ -6229,8 +6234,8 @@
     "announcedAt": "2024-05-08T07:29:58.070Z",
     "deleted": false
    },
-   "season": null,
-   "map": null,
+   "season": "音韵季",
+   "map": "雨林",
    "wikiRef": null,
    "note": ""
   },
@@ -12847,9 +12852,9 @@
    "note": ""
   },
   {
-   "id": "oc-2020-11-05-unknown",
-   "spiritId": null,
-   "spiritName": null,
+   "id": "oc-2020-11-05-蟹语者",
+   "spiritId": "蟹语者",
+   "spiritName": "蟹语者",
    "kind": "regular",
    "kindEvidence": "biweekly-cadence",
    "kindConfidence": "confirmed",
@@ -12859,9 +12864,14 @@
    "windowSource": "today",
    "factStatus": "confirmed",
    "nameVerification": {
-    "status": "unresolved",
-    "evidence": [],
-    "note": ""
+    "status": "manual",
+    "evidence": [
+     {
+      "type": "manual",
+      "url": "https://ds.163.com/feed/5fa378c512b80d5c331d9c48/"
+     }
+    ],
+    "note": "用户确认为蟹语者；社区 Wiki 在同一次回归上记录为 2020-11-02，自动去重"
    },
    "source": {
     "type": "dashen",
@@ -12891,8 +12901,8 @@
     "announcedAt": "2020-11-05T04:00:05.785Z",
     "deleted": false
    },
-   "season": null,
-   "map": null,
+   "season": "追光季",
+   "map": "暮土",
    "wikiRef": null,
    "note": ""
   },
@@ -14219,19 +14229,6 @@
    }
   },
   {
-   "start": "2020-11-02T06:00:00+08:00",
-   "end": "2020-11-06T12:00:00+08:00",
-   "name": "蟹语者",
-   "season": "追光季",
-   "map": "暮土",
-   "factStatus": "pending",
-   "reason": "社区 Wiki 有记录，但未找到对应的官方公告",
-   "source": {
-    "type": "wiki",
-    "url": "https://wiki.biligame.com/sky/%E6%97%85%E8%A1%8C%E5%85%88%E7%A5%96%E5%9B%9E%E5%BD%92%E8%AE%B0%E5%BD%95"
-   }
-  },
-  {
    "start": "2020-07-30T06:00:00+08:00",
    "end": "2020-08-03T12:00:00+08:00",
    "name": "智慧长者",
@@ -14401,16 +14398,5 @@
    }
   }
  ],
- "unmatched": [
-  {
-   "start": "2020-11-05T06:00:00+08:00",
-   "end": "2020-11-09T12:00:00+08:00",
-   "url": "https://ds.163.com/feed/5fa378c512b80d5c331d9c48/"
-  },
-  {
-   "start": "2024-05-09T06:00:00+08:00",
-   "end": "2024-05-13T12:00:00+08:00",
-   "url": "https://ds.163.com/feed/663b29f6dacd5f5b1370ec9f/"
-  }
- ]
+ "unmatched": []
 }

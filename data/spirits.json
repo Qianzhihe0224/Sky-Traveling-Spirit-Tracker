@@ -515,6 +515,28 @@
    "crossCheckDiff": 0
   },
   {
+   "id": "献情演员",
+   "name": "献情演员",
+   "seasons": [
+    "音韵季"
+   ],
+   "season": "音韵季",
+   "maps": [
+    "雨林"
+   ],
+   "map": "雨林",
+   "regular": 2,
+   "extra": 2,
+   "group": 0,
+   "total": 4,
+   "totalRC": 2,
+   "firstAt": "2021-05-01T06:00:00+08:00",
+   "lastAt": "2024-05-09T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 3,
+   "crossCheckDiff": 1
+  },
+  {
    "id": "冷漠术士",
    "name": "冷漠术士",
    "seasons": [
@@ -586,6 +608,28 @@
    "groupEvents": [],
    "wikiRegularCount": 3,
    "crossCheckDiff": 0
+  },
+  {
+   "id": "蟹语者",
+   "name": "蟹语者",
+   "seasons": [
+    "追光季"
+   ],
+   "season": "追光季",
+   "maps": [
+    "暮土"
+   ],
+   "map": "暮土",
+   "regular": 3,
+   "extra": 0,
+   "group": 0,
+   "total": 3,
+   "totalRC": 3,
+   "firstAt": "2020-11-05T06:00:00+08:00",
+   "lastAt": "2026-06-25T06:00:00+08:00",
+   "groupEvents": [],
+   "wikiRegularCount": 4,
+   "crossCheckDiff": -1
   },
   {
    "id": "风铃修补匠",
@@ -1010,28 +1054,6 @@
    "crossCheckDiff": 0
   },
   {
-   "id": "献情演员",
-   "name": "献情演员",
-   "seasons": [
-    "音韵季"
-   ],
-   "season": "音韵季",
-   "maps": [
-    "雨林"
-   ],
-   "map": "雨林",
-   "regular": 2,
-   "extra": 1,
-   "group": 0,
-   "total": 3,
-   "totalRC": 2,
-   "firstAt": "2021-05-01T06:00:00+08:00",
-   "lastAt": "2024-05-02T06:00:00+08:00",
-   "groupEvents": [],
-   "wikiRegularCount": 3,
-   "crossCheckDiff": 0
-  },
-  {
    "id": "舒展大师",
    "name": "舒展大师",
    "seasons": [
@@ -1096,28 +1118,6 @@
    "groupEvents": [],
    "wikiRegularCount": 3,
    "crossCheckDiff": 0
-  },
-  {
-   "id": "蟹语者",
-   "name": "蟹语者",
-   "seasons": [
-    "追光季"
-   ],
-   "season": "追光季",
-   "maps": [
-    "暮土"
-   ],
-   "map": "暮土",
-   "regular": 2,
-   "extra": 0,
-   "group": 0,
-   "total": 2,
-   "totalRC": 2,
-   "firstAt": "2022-05-05T06:00:00+08:00",
-   "lastAt": "2026-06-25T06:00:00+08:00",
-   "groupEvents": [],
-   "wikiRegularCount": 4,
-   "crossCheckDiff": -2
   },
   {
    "id": "茫然植物学家",

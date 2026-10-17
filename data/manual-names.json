@@ -9,5 +9,20 @@
       "note": "为什么是这位先祖（公告图、物品线索、游戏内截图等）"
     }
   },
-  "overrides": {}
+  "overrides": {
+    "2020-11-05": {
+      "name": "蟹语者",
+      "season": "追光季",
+      "map": "暮土",
+      "evidence": "https://ds.163.com/feed/5fa378c512b80d5c331d9c48/",
+      "note": "用户确认为蟹语者；社区 Wiki 在同一次回归上记录为 2020-11-02，自动去重"
+    },
+    "2024-05-09": {
+      "name": "献情演员",
+      "season": "音韵季",
+      "map": "雨林",
+      "evidence": "https://ds.163.com/feed/663b29f6dacd5f5b1370ec9f/",
+      "note": "用户确认为献情演员（官方公告未写名；Wiki 未收录这次加塞）"
+    }
+  }
 }
