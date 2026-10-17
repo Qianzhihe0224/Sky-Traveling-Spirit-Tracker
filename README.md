@@ -112,6 +112,39 @@ node scripts/smoke.mjs            # 无浏览器冒烟测试（五个视图 + �
 
 ---
 
+## 4.6 补录 / 更正先祖名字（本地）
+
+官方公告经常不写名字（只写“勤劳的先祖”），社区 Wiki 也偶尔对不上。遇到这种情况，**不要直接改 `data/occurrences.json`**（它是生成文件，下次构建会被覆盖），改这个文件：
+
+`data/manual-names.json`
+
+```json
+{
+  "overrides": {
+    "2024-05-09": {
+      "name": "先祖名字",
+      "season": "所属季节",
+      "map": "地图",
+      "evidence": "https://官方公告或截图链接",
+      "note": "判断依据：公告图 / 物品线索 / 游戏内截图"
+    }
+  }
+}
+```
+
+- key 用**复刻开始日期**（`YYYY-MM-DD`），或官方公告的 `postId`（两者都支持，日期优先）。
+- `name` 必填，其余可选；人工补录**优先于**社区 Wiki 的名字。
+- 改完运行：
+
+  ```bash
+  npm run build
+  ```
+
+  它会依次执行 合并 → 预测 → 校验 → 构建 → 冒烟测试。刷新页面即可看到；`data/manual-names.json` 里没匹配到记录的 key 会在构建时给出警告。
+- 确认无误后，把 `data/manual-names.json` 和重新生成的数据一起提交即可。
+
+---
+
 ## 5. 目录结构
 
 ```
@@ -124,6 +157,7 @@ data/spirits.json           先祖统计聚合
 data/app-data.js            由 build.mjs 生成，供 index.html 内嵌读取
 data/review-queue.json      分类器产出的候选
 data/review-data.js         同上，供 review.html 通过 file:// 读取
+data/manual-names.json      人工补录/更正先祖名字（优先于社区 Wiki）
 data/raw/dashen.json        官方动态快照
 data/raw/wiki-records.json  BWiki 记录快照
 scripts/                    sync / classify / import / build / smoke / fetch-wiki

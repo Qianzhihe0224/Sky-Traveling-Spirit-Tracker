@@ -17,6 +17,12 @@ const queue = JSON.parse(fs.readFileSync('data/review-queue.json', 'utf8'));
 const wiki = JSON.parse(fs.readFileSync('data/raw/wiki-records.json', 'utf8'));
 
 const WIKI_URL = wiki.sourceUrl;
+
+// 人工补录（官方未写名 / 需要更正名字时用）
+const MANUAL_FILE = 'data/manual-names.json';
+const manualNames = fs.existsSync(MANUAL_FILE)
+  ? JSON.parse(fs.readFileSync(MANUAL_FILE, 'utf8')).overrides || {}
+  : {};
 const feedById = new Map(rawFeeds.map(feed => [feed.id, feed]));
 
 const dayDiff = (a, b) => Math.round((Date.parse(a) - Date.parse(b)) / DAY);
@@ -171,8 +177,14 @@ for (let index = 0; index < officialEvents.length; index += 1) {
   const officialText = posts.map(post => `${post.feed.title}\n${post.feed.text}`).join('\n');
   const images = [...new Set(posts.flatMap(post => post.feed.images || []))].slice(0, 4);
 
-  const spiritName = isGroup ? null : wikiRegular?.spirits?.[0] || null;
-  const nameVerification = (() => {
+  const manualOverride = isGroup
+    ? null
+    : manualNames[ymd(event.start)] || (primary && manualNames[primary.postId]) || null;
+
+  let spiritName = isGroup ? null : wikiRegular?.spirits?.[0] || null;
+  let season = wikiRegular?.seasons?.[0] || null;
+  let map = wikiRegular?.maps?.[0] || null;
+  let nameVerification = (() => {
     if (!spiritName) return { status: 'unresolved', evidence: [], note: '' };
     const nameInText = officialText.includes(spiritName);
     return {
@@ -181,6 +193,19 @@ for (let index = 0; index < officialEvents.length; index += 1) {
       note: nameInText ? '官方公告正文直接出现该名字' : '官方公告正文未写名，名字取自社区 Wiki',
     };
   })();
+
+  // 人工补录优先于社区名字
+  if (!isGroup && manualOverride && manualOverride.name) {
+    spiritName = manualOverride.name;
+    season = manualOverride.season || season;
+    map = manualOverride.map || map;
+    nameVerification = {
+      status: 'manual',
+      evidence: manualOverride.evidence ? [{ type: 'manual', url: manualOverride.evidence }] : [],
+      note: manualOverride.note || '人工补录（官方公告未写名）',
+    };
+    rememberSpirit(spiritName, season, map);
+  }
 
   occurrences.push({
     id: `oc-${ymd(event.start)}-${spiritName || (isGroup ? 'group' : 'unknown')}`,
@@ -205,8 +230,8 @@ for (let index = 0; index < officialEvents.length; index += 1) {
       announcedAt: primary?.feed?.announcedAt || event.announcedAt,
       deleted: Boolean(primary?.feed?.deleted),
     },
-    season: wikiRegular?.seasons?.[0] || null,
-    map: wikiRegular?.maps?.[0] || null,
+    season,
+    map,
     wikiRef: wikiRegular ? { start: wikiRegular.start, end: wikiRegular.end, regularCount: wikiRegular.regularCount, url: WIKI_URL } : null,
     note: event.note || '',
   });

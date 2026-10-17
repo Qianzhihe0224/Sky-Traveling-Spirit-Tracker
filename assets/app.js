@@ -532,6 +532,7 @@
           '<div class="table-wrap"><table><thead><tr><th>时间</th><th>先祖</th><th>季节 / 地图</th><th>来源</th></tr></thead><tbody>' + pending + '</tbody></table></div></div>' +
 
         '<div class="card section"><h2>未归属：官方有复刻、名字未确认 <small>' + UNMATCHED.length + ' 条</small></h2>' +
+        '<p class="small muted">知道名字的话，可在 <code>data/manual-names.json</code> 里按开始日期补录，然后运行 <code>npm run build</code>（详见 README「补录 / 更正先祖名字」）。</p>' +
           '<div class="table-wrap"><table><thead><tr><th>时间</th><th>说明</th><th>来源</th></tr></thead><tbody>' + unmatched + '</tbody></table></div></div>' +
 
         '<div class="card section"><h2>导出与更新</h2>' +

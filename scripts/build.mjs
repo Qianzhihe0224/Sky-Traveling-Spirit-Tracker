@@ -102,6 +102,23 @@ if (!checkOnly) {
   fs.writeFileSync('data/app-data.js', js, 'utf8');
 }
 
+if (fs.existsSync('data/manual-names.json')) {
+  const manual = JSON.parse(fs.readFileSync('data/manual-names.json', 'utf8')).overrides || {};
+  const starts = new Set();
+  const postIds = new Set();
+  for (const occ of data.occurrences) {
+    starts.add(String(occ.start).slice(0, 10));
+    if (occ.source?.postId) postIds.add(occ.source.postId);
+    for (const post of occ.source?.allPosts || []) postIds.add(post.postId);
+  }
+  for (const key of Object.keys(manual)) {
+    if (!starts.has(key) && !postIds.has(key)) {
+      warnings.push(`manual-names 条目未匹配到任何复刻记录（会被忽略）：${key}`);
+    }
+    if (!manual[key] || !manual[key].name) warnings.push(`manual-names 条目缺少 name：${key}`);
+  }
+}
+
 if (!predictions) warnings.push('缺少 data/predictions.json，预测页会显示为空');
 else if (!predictions.nextDates || !predictions.nextDates.length) warnings.push('预测日期为空，请检查 predict.mjs');
 
