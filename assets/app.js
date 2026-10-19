@@ -161,73 +161,180 @@
     return rows;
   }
 
-  /* ---------------- 概览 ---------------- */
+  /* ---------------- 头版（总览） ---------------- */
+  function cnFullDate(iso) {
+    var t = fmtDate(iso).split('-');
+    return Number(t[0]) + ' 年 ' + Number(t[1]) + ' 月 ' + Number(t[2]) + ' 日';
+  }
+
+  function cnMonth(iso) {
+    var t = fmtDate(iso).split('-');
+    return Number(t[0]) + ' 年 ' + Number(t[1]) + ' 月';
+  }
+
+  function cnRange(start, end) {
+    var a = fmtDate(start).split('-');
+    var b = fmtDate(end).split('-');
+    var m1 = Number(a[1]), d1 = Number(a[2]), m2 = Number(b[1]), d2 = Number(b[2]);
+    if (m1 === m2) return m1 + ' 月 ' + d1 + ' 日至 ' + d2 + ' 日';
+    return m1 + ' 月 ' + d1 + ' 日至 ' + m2 + ' 月 ' + d2 + ' 日';
+  }
+
+  function stayDays(occ) {
+    var ms = Date.parse(occ.end) - Date.parse(occ.start);
+    return Math.max(1, Math.round(ms / 86400000) + 1);
+  }
+
+  function paintMasthead() {
+    var dateEl = document.getElementById('mast-date');
+    var rangeEl = document.getElementById('mast-range');
+    var countsEl = document.getElementById('mast-counts');
+    if (dateEl) dateEl.textContent = '数据截至 ' + cnFullDate(META.dataCutoff);
+    if (rangeEl) {
+      rangeEl.textContent = '自 ' + cnMonth(META.coverage && META.coverage.from) + '起 · 共 ' +
+        META.counts.occurrences + ' 次官方记录 · ' + META.counts.spirits + ' 位先祖';
+    }
+    if (countsEl) {
+      countsEl.textContent = '常规 ' + META.counts.regular + '　加塞 ' + META.counts.extra +
+        '　集体 ' + META.counts.groupOccurrences;
+    }
+  }
+
   function renderOverview() {
     var latest = latestOccurrence();
-    var top = SPIRITS.slice(0, 12);
-    var max = top.length ? totalFor(top[0]) || 1 : 1;
-    var recent = OCC.filter(function (o) { return o.kind !== 'group'; }).slice(0, 7);
-    var groupCount = GROUPS.length;
+    var next = (PREDICT && PREDICT.nextDates && PREDICT.nextDates[0]) || null;
+    var candidates = ((PREDICT && PREDICT.candidates) || []).slice(0, 3);
+    var recent = OCC.filter(function (o) { return o.kind !== 'group'; }).slice(0, 10);
+    var top = SPIRITS.slice().sort(function (a, b) {
+      return totalFor(b) - totalFor(a) || (a.name > b.name ? 1 : -1);
+    }).slice(0, 8);
+    var latestSpirit = latest ? spiritByName.get(latest.spiritName) : null;
+    var gapDays = (latest && next)
+      ? Math.round((Date.parse(next.date) - Date.parse(latest.start)) / 86400000) : 0;
+    var gapText = gapDays >= 13 && gapDays <= 15 ? '两周后' : (gapDays > 0 ? gapDays + ' 天后' : '接下来');
 
-    var topHtml = top.map(function (s, index) {
-      var value = totalFor(s);
-      return '<div class="rank-item" data-open-spirit="' + esc(s.name) + '">' +
-        '<div class="name">' + (index + 1) + '. ' + esc(s.name) + '</div>' +
-        '<div class="bar"><i style="width:' + Math.max(6, Math.round(value / max * 100)) + '%"></i></div>' +
-        '<div class="cnt">' + value + '</div></div>';
+    var headline = latest
+      ? esc(latest.spiritName || '名字未确认') + '在' + esc(latest.map || '天空王国') + '落幕，' +
+        gapText + '是又一轮常规档期'
+      : '国服复刻记录';
+
+    var lead = '';
+    if (latest) {
+      lead += esc(cnRange(latest.start, latest.end)) + '，' + esc(latest.spiritName || '一位先祖');
+      if (latestSpirit) lead += '第 <b>' + totalFor(latestSpirit) + '</b> 次';
+      lead += '回到天空王国，在' + esc(latest.map || '—') + '停留 <b>' + stayDays(latest) + '</b> 天。';
+    }
+    lead += '自 ' + esc(cnMonth(META.coverage && META.coverage.from)) + '记录以来，这已是第 <b>' +
+      META.counts.occurrences + '</b> 次旅行先祖回归，其中第 <b>' + META.counts.regular + '</b> 次常规复刻。';
+    if (next) {
+      lead += '按近三年「每隔一周的周四」的开档规律，下一轮预计落在 <span class="red">' +
+        esc(cnDate(next.date)) + '</span>。';
+    }
+
+    var recentHtml = recent.map(function (occ, index) {
+      var k = KIND[occ.kind] || KIND.regular;
+      return '<li' + (occ.kind === 'group' ? '' : ' data-open-spirit="' + esc(occ.spiritName || '') + '"') + '>' +
+        '<span class="i">' + (index + 1 < 10 ? '0' : '') + (index + 1) + '</span>' +
+        '<span class="n">' + esc(occ.spiritName || '名字未确认') + '</span>' +
+        '<span class="d">' + fmtMD(occ.start) + '</span>' +
+        '<span class="t ' + esc(k.cls) + '">' + esc(k.short) + '</span></li>';
     }).join('');
 
-    var recentHtml = recent.map(function (occ) {
-      return '<div class="tl-item" data-open-spirit="' + esc(occ.spiritName || '') + '">' +
-        '<div class="tl-date">' + fmtRange(occ.start, occ.end) + '</div>' +
-        '<div>' + kindBadge(occ.kind) + '</div>' +
-        '<div><div class="tl-name">' + esc(occ.spiritName || '未确认') + '</div>' +
-        '<div class="tl-meta">' + esc(occ.season || '') + (occ.map ? ' · ' + esc(occ.map) : '') + '</div></div>' +
-        '<div class="tl-link">' + occurrenceLink(occ) + '</div></div>';
+    var topHtml = top.map(function (s) {
+      return '<tr data-open-spirit="' + esc(s.name) + '">' +
+        '<td>' + esc(s.name) + '</td>' +
+        '<td class="season-tag">' + esc([s.season, s.map].filter(Boolean).join(' · ')) + '</td>' +
+        '<td class="num-cell">' + totalFor(s) + '</td></tr>';
     }).join('');
+
+    var candHtml = candidates.map(function (item) {
+      return '<li data-open-spirit="' + esc(item.name) + '">' +
+        '<span>' + esc(item.name) +
+        (item.season ? '<span class="season-tag"> ' + esc(item.season) + '</span>' : '') + '</span>' +
+        '<span class="d">' + item.daysSince + ' 天</span></li>';
+    }).join('') || '<li><span class="muted small">暂无候选</span></li>';
+
+    var lastFile = latest
+      ? '<div class="file">' +
+          '<div class="ttl">本 次 档 期</div>' +
+          '<div class="big">' + esc(latest.spiritName || '名字未确认') +
+            '<span>' + esc([latest.season, latest.map].filter(Boolean).join(' · ')) + '</span></div>' +
+          '<dl>' +
+            '<div><dt>起止</dt><dd>' + esc(fmtRange(latest.start, latest.end)) + '</dd></div>' +
+            '<div><dt>累计</dt><dd>第 ' + (latestSpirit ? totalFor(latestSpirit) : 1) + ' 次</dd></div>' +
+            '<div><dt>类型</dt><dd>' + esc((KIND[latest.kind] || KIND.regular).label) + '</dd></div>' +
+          '</dl>' +
+          (latest.source && latest.source.url
+            ? '<div class="file-link"><a href="' + esc(latest.source.url) + '" target="_blank" rel="noopener">官方原文</a></div>'
+            : '') +
+        '</div>'
+      : '<div class="file"><div class="ttl">本 次 档 期</div><p class="small">暂无记录</p></div>';
+
+    var nextFile = next
+      ? '<div class="file">' +
+          '<div class="big" style="margin-top:0">' + esc(cnDate(next.date)) +
+            '<span>' + esc(next.weekday) + ' · 06:00 开档</span></div>' +
+          '<dl>' +
+            '<div><dt>把握</dt><dd>' + next.probability + '%</dd></div>' +
+            '<div><dt>依据</dt><dd>' + (PREDICT.cadence ? PREDICT.cadence.samples : '—') + ' 次档期 · ' +
+              (PREDICT.cadence ? PREDICT.cadence.mode : 14) + ' 天间隔</dd></div>' +
+          '</dl>' +
+        '</div>'
+      : '<div class="file"><p class="small">暂无预测数据</p></div>';
 
     view.innerHTML =
-      '<div class="wrap">' +
-        '<div class="banner"><span class="dot"></span><div>' +
-          '<strong>复刻事实只认官方公告</strong>：每条记录都带网易大神「Sky光遇」官方原文链接；' +
-          '先祖名字在官方未写名时取自社区 Wiki，并在明细里标注来源。<br>' +
-          '数据更新于 <strong>' + esc(fmtBeijing(META.generatedAt)) + '</strong>' +
-          (latest ? ' · 最近一次复刻：<strong>' + esc(latest.spiritName || '') + '</strong> ' +
-            esc(fmtRange(latest.start, latest.end)) + '（' + esc(occurrenceStatus(latest)) + '）' : '') +
-        '</div></div>' +
-
-        '<div class="grid grid-4 section">' +
-          '<div class="card stat gold"><div class="num mono">' + META.counts.occurrences + '</div>' +
-            '<div class="label">已核验复刻段数</div><div class="sub">常规 ' + META.counts.regular + ' · 加塞 ' + META.counts.extra + ' · 集体 ' + META.counts.groupOccurrences + '</div></div>' +
-          '<div class="card stat cyan"><div class="num mono">' + META.counts.spirits + '</div>' +
-            '<div class="label">有复刻记录的先祖</div><div class="sub">含集体复刻出场</div></div>' +
-          '<div class="card stat violet"><div class="num mono">' + groupCount + '</div>' +
-            '<div class="label">集体复刻活动</div><div class="sub">同一活动内每位先祖计 1 次</div></div>' +
-          '<div class="card stat green"><div class="num mono">' + PENDING.length + '</div>' +
-            '<div class="label">待考证记录</div><div class="sub">社区有记录、缺官方公告，不计入统计</div></div>' +
+      '<div class="front">' +
+        '<section>' +
+          '<h2 class="headline">' + headline + '</h2>' +
+          '<p class="lead">' + lead + '</p>' +
+          '<div class="kick"><span>最 近 十 次</span><span>类型</span></div>' +
+          '<ul class="rows">' + recentHtml + '</ul>' +
+          '<p class="col-note">加塞指不在「每隔一周的周四」常规链上、夹在两次常规复刻之间的额外复刻；' +
+            '2020–2021 早期档期不规律，一律按常规处理。</p>' +
+        '</section>' +
+        '<section>' +
+          '<div class="ledger">' +
+            '<div class="led"><span class="k">常 规 复 刻</span><span class="v">' + META.counts.regular + '<small>次</small></span></div>' +
+            '<div class="led"><span class="k">加 塞 复 刻</span><span class="v">' + META.counts.extra + '<small>次</small></span></div>' +
+            '<div class="led"><span class="k">集 体 复 刻</span><span class="v">' + META.counts.groupOccurrences + '<small>场</small></span></div>' +
+            '<div class="led pct"><span class="k">加 塞 占 比</span><span class="v">' +
+              (PREDICT && PREDICT.extraShare != null ? PREDICT.extraShare : '—') + '<small>%</small></span></div>' +
+          '</div>' +
+          '<p class="data-note">加塞占比 = 加塞 ÷（常规 + 加塞），<b>不含集体复刻</b>。</p>' +
+          '<div class="kick"><span>先 祖 榜</span><span>累计出场</span></div>' +
+          '<div class="table-wrap"><table><tbody>' + topHtml + '</tbody></table></div>' +
+          '<p class="data-note">共 <b>' + META.counts.spirits + '</b> 位先祖有复刻记录 · ' +
+            '<b>' + PENDING.length + '</b> 条社区记录待核对</p>' +
+        '</section>' +
+        '<section>' +
+          lastFile +
+          '<div class="side-t">下 一 次 复 刻</div>' +
+          '<div style="margin-top:10px">' + nextFile + '</div>' +
+          '<div class="side-t">候 选</div>' +
+          '<ul class="cand">' + candHtml + '</ul>' +
+          '<p class="side-note">另有 <b>' + PENDING.length + '</b> 条社区记录尚未找到对应的官方公告，' +
+            '未计入统计，列在「<a href="#/about">来源与口径</a>」的待核对清单里。</p>' +
+        '</section>' +
+      '</div>' +
+      '<div class="below">' +
+        '<div>' +
+          '<div class="kick"><span>数 据 覆 盖</span><span>北京时间</span></div>' +
+          '<dl class="kv">' +
+            '<dt>数据更新</dt><dd>' + esc(fmtBeijing(META.generatedAt)) + '</dd>' +
+            '<dt>官方归档</dt><dd>' + esc(META.archiveSince) + ' 起（大神官方账号公开动态）</dd>' +
+            '<dt>覆盖区间</dt><dd>' + esc(fmtDate(META.coverage && META.coverage.from)) + ' ~ ' +
+              esc(fmtDate(META.dataCutoff)) + '<span class="muted">（含进行中的复刻）</span></dd>' +
+            '<dt>已知缺口</dt><dd>' + PENDING.length + ' 条社区记录缺官方公告；' + UNMATCHED.length + ' 条官方复刻未确认名字</dd>' +
+          '</dl>' +
         '</div>' +
-
-        '<div class="grid grid-2 section">' +
-          '<div class="card"><h2>复刻次数 Top 12 <small>当前口径：' + (state.mode === 'sum3' ? '常规+加塞+集体' : '常规+集体') + '</small></h2>' +
-            '<div class="rank-list">' + topHtml + '</div></div>' +
-          '<div class="card"><h2>最近复刻 <small>点击查看详情</small></h2>' + recentHtml + '</div>' +
-        '</div>' +
-
-        '<div class="grid grid-2 section">' +
-          '<div class="card"><h2>数据覆盖</h2><dl class="kv">' +
-            '<dt>数据更新</dt><dd>' + esc(fmtBeijing(META.generatedAt)) + '（北京时间）</dd>' +
-            '<dt>官方公告归档</dt><dd>' + esc(META.archiveSince) + ' 起（大神官方账号公开动态）</dd>' +
-            '<dt>覆盖至</dt><dd>' + esc(fmtDate(META.coverage && META.coverage.from)) + ' ~ ' + esc(fmtDate(META.dataCutoff)) +
-              '<span class="muted">（含进行中的复刻，以其结束时间计）</span></dd>' +
-            '<dt>已知缺口</dt><dd>' + PENDING.length + ' 条社区记录缺官方公告（多为 2024-08~11、2020 上半年）；' + UNMATCHED.length + ' 条官方复刻未确认名字</dd>' +
-            '<dt>交叉核对</dt><dd>与 BWiki 记录的“常规复刻次数”比对，差异会显示在先祖详情里</dd>' +
-            '</dl></div>' +
-          '<div class="card"><h2>怎么用</h2><ul class="list-clean">' +
-            '<li>「先祖榜」：搜索、按季节筛选、切换统计口径，点任意一行看每次复刻明细。</li>' +
-            '<li>「时间轴」：按年份倒序看全部复刻，可按常规 / 加塞 / 集体过滤。</li>' +
-            '<li>「集体复刻」：看每场活动的出场先祖与活动区间。</li>' +
-            '<li>「来源与口径」：核对数据来源、待考证清单，导出 CSV / JSON。</li>' +
-            '</ul></div>' +
+        '<div>' +
+          '<div class="kick"><span>怎 么 用</span><span>点击任意一行</span></div>' +
+          '<ul class="list-clean">' +
+            '<li>「<a href="#/spirits">先祖榜</a>」搜索、按季节筛选、切换统计口径，点任意一行看每次复刻明细。</li>' +
+            '<li>「<a href="#/timeline">时间轴</a>」按年份倒序看全部复刻，可按常规 / 加塞 / 集体过滤。</li>' +
+            '<li>「<a href="#/groups">集体复刻</a>」看每场活动的出场先祖与活动区间。</li>' +
+            '<li>「<a href="#/about">来源与口径</a>」核对来源、待考证清单，导出 CSV / JSON。</li>' +
+          '</ul>' +
         '</div>' +
       '</div>';
   }
@@ -299,7 +406,7 @@
 
   function renderSpirits() {
     view.innerHTML =
-      '<div class="wrap">' +
+      '<div class="page">' +
         '<div class="section-head"><h2>先祖榜</h2><span class="hint">共 ' + SPIRITS.length + ' 位先祖 · 点行看明细</span></div>' +
         '<div class="controls">' +
           '<input id="search" type="search" placeholder="搜索先祖 / 季节 / 地图" value="' + esc(state.q) + '" autocomplete="off">' +
@@ -369,10 +476,10 @@
     }).join('');
 
     view.innerHTML =
-      '<div class="wrap">' +
+      '<div class="page">' +
         '<div class="section-head"><h2>下一次常规复刻预测</h2>' +
           '<span class="hint">基于 ' + esc(PREDICT.cadence ? PREDICT.cadence.samples : '—') + ' 次开档间隔 · 更新于 ' + esc(fmtBeijing(PREDICT.generatedAt)) + '</span></div>' +
-        '<div class="banner"><span class="dot"></span><div><strong>这是统计推测，不是官方预告。</strong>' +
+        '<div class="banner"><span class="dot"></span><div><strong>口径提醒</strong>：' +
           esc(PREDICT.disclaimer || '') + '</div></div>' +
 
         '<div class="grid grid-2 section">' +
@@ -446,7 +553,7 @@
     }).join('');
 
     view.innerHTML =
-      '<div class="wrap">' +
+      '<div class="page">' +
         '<div class="section-head"><h2>时间轴</h2><span class="hint">' + list.length + ' 条记录</span></div>' +
         '<div class="controls"><span class="seg" id="tl-kind">' +
           ['all', 'regular', 'extra', 'group'].map(function (kind) {
@@ -484,7 +591,7 @@
     }).join('');
 
     view.innerHTML =
-      '<div class="wrap">' +
+      '<div class="page">' +
         '<div class="section-head"><h2>集体复刻</h2><span class="hint">' + GROUPS.length + ' 场活动 · 同一活动内每位先祖计 1 次出场</span></div>' +
         '<div class="banner section"><span class="dot"></span><div>集体复刻的<b>时间与是否存在</b>以官方公告为准；' +
           '官方公告常只写“某季先祖集体回归”而不逐一列名，此处的<b>名单来自社区 Wiki</b>，仅用于识别“哪位先祖出场”，并已在每张卡片上标注。</div></div>' +
@@ -512,7 +619,7 @@
     }).join('');
 
     view.innerHTML =
-      '<div class="wrap">' +
+      '<div class="page">' +
         '<div class="section-head"><h2>来源与口径</h2><span class="hint">数据生成于 ' + esc(fmtBeijing(META.generatedAt)) + '</span></div>' +
 
         '<div class="card"><h2>统计口径</h2><ul class="list-clean">' +
@@ -791,6 +898,7 @@
 
   window.addEventListener('hashchange', render);
 
+  paintMasthead();
   if (!location.hash) location.hash = '#/overview';
   render();
 })();

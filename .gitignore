@@ -2,3 +2,6 @@
 node_modules/
 _site/
 mockups/
+style-explorer*.html
+explore/
+shots/

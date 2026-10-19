@@ -3,19 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sky-Traveling-Spirit-Tracker · 光遇国服复刻先祖统计</title>
+  <title>复刻年鉴 · 光遇国服复刻先祖统计</title>
   <meta name="description" content="《光·遇》国服历史复刻先祖统计与可视化：常规 / 加塞 / 集体分列计数，每条记录可追溯网易大神官方公告。">
-  <meta name="theme-color" content="#232150">
+  <meta name="theme-color" content="#f2ecdf">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-  <header class="topbar">
-    <div class="wrap topbar-inner">
-      <div class="brand">
-        <div class="brand-mark">光</div>
-        <div>
-          <h1>国服复刻先祖统计</h1>
-          <p>Sky: Children of the Light · 常规 / 加塞 / 集体分列计数</p>
+  <header class="masthead">
+    <div class="wrap">
+      <div class="strip">
+        <span><b>《光·遇》国服</b>　旅行先祖回归记录</span>
+        <span id="mast-date">数据截至 —</span>
+      </div>
+      <div class="masthead-main">
+        <h1>复刻年鉴</h1>
+        <div class="masthead-sub">
+          <span id="mast-range">自 2020 年 8 月起</span>
+          <span id="mast-counts">常规 —　加塞 —　集体 —</span>
         </div>
       </div>
       <nav class="tabs" aria-label="主导航">
@@ -33,9 +37,15 @@
 
   <footer>
     <div class="wrap">
-      <a href="https://github.com/Qianzhihe0224/Sky-Traveling-Spirit-Tracker" target="_blank" rel="noopener">Sky-Traveling-Spirit-Tracker</a> ·
-      非官方粉丝工具，与网易、thatgamecompany 无关 · 复刻事实以网易大神「Sky光遇」官方公告为准 ·
-      先祖名字在官方未写名时取自社区 Wiki，并在明细中标注 · 数据更新：运行 <code>node scripts/sync-dashen.mjs</code> 后重新构建
+      <p class="imprint">
+        复刻事实取自网易大神「Sky光遇」官方认证账号，逐条附公告链接；官方正文未写名者取自 BWiki 并在明细中标注。
+        口径：<b>常规 / 加塞 / 集体</b>分列计数，常规与加塞为单独复刻，集体复刻按场次计。
+      </p>
+      <p class="imprint-meta">
+        <a href="https://github.com/Qianzhihe0224/Sky-Traveling-Spirit-Tracker" target="_blank" rel="noopener">Sky-Traveling-Spirit-Tracker</a>
+        <span>非官方粉丝工具，与网易、thatgamecompany 无关</span>
+        <span>数据更新：运行 <code>node scripts/sync-dashen.mjs</code> 后重新构建</span>
+      </p>
     </div>
   </footer>
 
